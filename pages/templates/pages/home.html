@@ -1,0 +1,123 @@
+{% extends 'accounts/base.html' %}
+
+
+{% block navbar%}
+    {% include "pages/navbar.html" %}
+{% endblock %}
+
+
+{% block content %}
+<!-- Jumbotron code -->
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4 text-center">Slambook</h1><br>
+    
+    <p class="lead text-center">This slambook will take you on a trip down the memory lane. The trip is not new but memories
+      will get refresh.</p>
+
+    <hr class="my-4">
+    <p class="lead text-center">Slambook is not just a book in which information of your friend is
+      written but it's a memory of golden moment's I spent with my dear friends.
+      <br>
+      They are always with me in my good as well as bad times.
+    </p>
+
+    <br>
+
+    
+      
+      {% if user.is_authenticated %}
+      <p class="lead text-center">
+        <a class="btn btn-success btn-lg" href="profile" role="button">Go to profile</a>
+      </p>
+      {% else %}
+
+      <p class="lead text-center">
+        Free... Sign up now.
+      </p>
+      <p class="lead text-center">
+        <a class="btn btn-success btn-lg" href="signup" role="button">Sign Up</a>
+        <a class="btn btn-success btn-lg" href="login" role="button">Login</a>
+      </p> 
+      {% endif %}
+
+  </div>
+</div>
+    
+
+<!-- carousel code -->
+
+
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="container">
+        <div class="card text-center">
+          <div class="card-header">
+            Comment 1
+          </div>
+          <div class="card-body px-5">
+            <h5 class="card-title p-4">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, harum? Vitae est consectetur eveniet facere iste quae amet recusandae odio eligendi cum et, soluta ut. Nemo suscipit non repellendus tempore."</h5>
+          </div>
+        </div>    
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="container">
+        <div class="card text-center">
+          <div class="card-header">
+            Comment 2
+          </div>
+          <div class="card-body px-5">
+            <h5 class="card-title p-4">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, harum? Vitae est consectetur eveniet facere iste quae amet recusandae odio eligendi cum et, soluta ut. Nemo suscipit non repellendus tempore."</h5>
+          </div>
+        </div>    
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="container">
+        <div class="card text-center">
+          <div class="card-header">
+            Comment 3
+          </div>
+          <div class="card-body px-5">
+            <h5 class="card-title p-4">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, harum? Vitae est consectetur eveniet facere iste quae amet recusandae odio eligendi cum et, soluta ut. Nemo suscipit non repellendus tempore."</h5>
+          </div>
+        </div>    
+      </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon bg-success" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon bg-success" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+{% endblock %}
+
+
+
+  {% block footer%}
+      {% include "pages/footer.html" %}
+  {% endblock %}
+
