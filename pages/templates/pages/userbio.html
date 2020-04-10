@@ -63,11 +63,24 @@
         </div>
 
 
+        <div class="form-row">
+          <div class="form-group col">
+              <label for="occupation">Occupation:</label>
+              <input class="form-control" type="text" placeholder="Occupation" name="occupation" id="occupation">              
+          </div>
+          <div class="form-group col">
+            <label for="company">Institute/Company:</label>
+            <input class="form-control" type="text" placeholder="Institute/Company" name="company" id="company">              
+          </div>
+        </div>
+
+
         <!-- mobile user input field -->
-        <div class="form-group">
-          <label for="mobile">mobile:</label>
-          <input type="text" class="form-control" id="mobile" aria-describedby="mobile" placeholder="Enter mobile" value={{request.user}} disabled>
-          <small id="emailHelp" class="form-text text-muted">You can't change mobile for slambook.</small>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label for="mobile">Mobile No:</label>
+            <input type="text" class="form-control" id="mobile" aria-describedby="mobile" placeholder="Enter mobile no">
+          </div>
         </div>
 
 
