@@ -1,1 +1,32 @@
 <p>Profile works!</p>
+
+<p>{{name}}</p>
+
+<p>{{user}}</p>
+
+
+{% if user == name %}
+      <div class="">
+        Update your profile:
+      </div>
+      <div class="">
+        See all secret messages you received:
+      </div>
+      <div>
+        see all secret messages sent by you:
+        <a class="btn btn-success btn-lg" href="/profile/{{request.user}}" role="button">Secret messages</a>
+      </div>
+      <div>see all slams on your profile</div>
+      <div>Check friends who added their bio to your profile</div>
+      <p class="lead text-center">
+        <a class="btn btn-success btn-lg" href="/profile/{{request.user}}" role="button">Go to profile</a>
+      </p>
+      {% else %}
+
+      
+      <p class="lead text-center">
+        <a class="btn btn-success btn-lg" href="/profile/{{name}}/writeslam" role="button">Add your bio</a>
+        <a class="btn btn-success btn-lg" href="/profile/{{name}}/writeslam" role="button">Write Slam for {{name}}</a>
+        <a class="btn btn-success btn-lg" href="/profile/{{name}}/writesecretmessage" role="button">Write Secret message to {{name}}</a>
+      </p> 
+{% endif %}

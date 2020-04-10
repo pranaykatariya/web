@@ -9,3 +9,8 @@ class Admin_Messages(models.Model):
     message = models.TextField(null=True, blank=True)
 
 
+class Secret_Message(models.Model):
+    to_username = models.CharField(max_length=64)    
+    from_username = models.CharField(max_length=64)
+    message = models.TextField()
+    timestamp_message = models.DateTimeField(auto_now_add=True)

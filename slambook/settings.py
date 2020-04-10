@@ -85,10 +85,27 @@ WSGI_APPLICATION = 'slambook.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+#spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+#spring.datasource.url=jdbc:mysql://localhost:3306/psp
+#spring.datasource.username=root
+#spring.datasource.password=password
+#spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL57Dialect
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'slambook',
+        'USER': 'root',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -131,11 +148,11 @@ USE_TZ = True
 
     
 #STATIC_ROOT = ''
-STATIC_ROOT = "slambook/static/"
+# STATIC_ROOT = "slambook/static/"
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )    
 
-
+# deployment settings
 django_heroku.settings(locals())

@@ -28,7 +28,7 @@
       
       {% if user.is_authenticated %}
       <p class="lead text-center">
-        <a class="btn btn-success btn-lg" href="profile" role="button">Go to profile</a>
+        <a class="btn btn-success btn-lg" href="profile/{{request.user}}" role="button">Go to profile</a>
       </p>
       {% else %}
 

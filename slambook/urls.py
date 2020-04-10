@@ -28,7 +28,7 @@ from accounts.views import logout
 from pages.views import about_page
 from pages.views import contact_page
 from pages.views import home_page
-from pages.views import profile_page
+from pages.views import profile_page, postsecretmessage, postslam, secretmessages, userbio
 from pages.views import error_page
 
 
@@ -38,14 +38,21 @@ urlpatterns = [
     path('home', home_page, name='home_page'),
     path('contact', contact_page, name='contact_page'),
     path('about', about_page, name='about_page'),
-    path('profile', profile_page, name='profile_page'),
+    
 
     path('login', login_page, name='login_page'),
     path('signup', signup_page, name='signup_page'),
     path('logout', logout, name='logout'),
 
-    path('admin/', admin.site.urls),
+    path('profile/<str:name>', profile_page, name='profile_page'),
+    path('profile/<str:name>/writeslam', postslam, name='postslam'),
+    path('profile/<str:name>/writesecretmessage', postsecretmessage, name='postsecretmessage'),
+    path('profile/<str:name>/secretmessages', secretmessages, name='secretmessages'),
+    path('profile/<str:name>/userbio', userbio, name='userbio'),
     
+
+    path('admin/', admin.site.urls),
+
 ]
 
 handler404 = pages_views.error_page

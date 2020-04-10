@@ -39,7 +39,7 @@ def signup_page(request):
             email = request.POST.get('email')
             user = request.POST.get('username')
             password = request.POST.get('password1')
-
+            user.split()
             try:
                 user = User.objects.create_user(username=user, email=email, password= password, first_name = name)
                 user.save()
