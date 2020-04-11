@@ -24,11 +24,11 @@
       {% if username == name %}
       <div class="row text-center">
         <div class="col">
-          <a class="btn btn-success" href="/profile/{{request.user}}/userbio" role="button">Update profile</a>
+          <a class="btn btn-success m-3" href="/profile/{{request.user}}/userbio" role="button">Update profile</a>
         </div>
 
         <div class="col">
-          <a class="btn btn-success" href="/profile/{{request.user}}/friends" role="button">Explore Friends</a>
+          <a class="btn btn-success m-3" href="/profile/{{request.user}}/friends" role="button">Explore Friends</a>
         </div>
       </div>
 
@@ -36,10 +36,10 @@
 
       <div class="row text-center">
         <div class="col">
-          <a class="btn btn-success" href="/profile/{{request.user}}/slambook" role="button">Explore Slambook</a>
+          <a class="btn btn-success m-3" href="/profile/{{request.user}}/slambook" role="button">Explore Slambook</a>
         </div>
         <div class="col">
-          <a class="btn btn-success" href="/profile/{{request.user}}/secretmessages" role="button">Secret Messages</a>
+          <a class="btn btn-success m-3" href="/profile/{{request.user}}/secretmessages" role="button">Secret Messages</a>
         </div>
         
       </div>
@@ -48,7 +48,7 @@
 
         <div class="row text-center">
           <div class="col">
-            <a class="btn btn-success" href="/profile/{{name}}/writeslam" role="button">Add your Bio</a>
+            <a class="btn btn-success m-2" href="/profile/{{name}}/writeslam" role="button">Add your Bio</a>
           </div>
         </div>
 
@@ -56,10 +56,10 @@
 
         <div class="row text-center">
           <div class="col m-2">
-            <a class="btn btn-success" href="/profile/{{name}}/writesecretmessage" role="button">Secret Message</a>
+            <a class="btn btn-success m-2" href="/profile/{{name}}/writesecretmessage" role="button">Secret Message</a>
           </div>
           <div class="col m-2">
-            <a class="btn btn-success" href="/profile/{{name}}/writeslam" role="button">Slam for {{name}}</a>
+            <a class="btn btn-success m-2" href="/profile/{{name}}/writeslam" role="button">Slam for {{name}}</a>
           </div>
         </div>
       </div>              
@@ -78,15 +78,129 @@
 <div class="card bg-light">
   <div class="card-body">
     <h5 class="card-title">{{data.name|default:"Person"}}'s Information:</h5>
-    <p class="card-text"><b>Name:</b> {{data.name}} {{data.lastname}}</p>
+    <p class="card-text"><b>Name:</b> {{data.name|default_if_none:""}} {{data.lastname|default_if_none:""}}</p>
     <p class="card-text"><b>Birthdate:</b> {{data.birthdate|date:"D,  d M,Y"}}</p>
-    <p class="card-text"><b>Occupation:</b> {{data.occupation}}</p>
-    <p class="card-text"><b>Institute/Company:</b> {{data.company}}</p>
-    <p class="card-text"><b>Contact:</b> {{data.mobile}}</p>
-    <p class="card-text"><b>Email:</b> {{data.email}}</p>
-    <p class="card-text"><b>Contact:</b> {{data.insta_username}}</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <p class="card-text"><b>Occupation:</b> {{data.occupation|default_if_none:""}}</p>
+    <p class="card-text"><b>Institute/Company:</b> {{data.company|default_if_none:""}}</p>
+    <p class="card-text"><b>Contact:</b> {{data.mobile|default_if_none:""}}</p>
+    <p class="card-text"><b>Email:</b> {{data.email|default_if_none:""}}</p>
+    <p class="card-text"><b>Instagram:</b> {{data.insta_username|default_if_none:""}}</p>
+    
   </div>
+</div>
+<br><br>
+
+
+<div class="card bg-light">
+  <div class="card-body">
+    <h5 class="card-title">{{data.name|default:"Person"}}'s First:</h5>
+    <div class="form-row">
+      <div class="form-group col-11">
+        <label for="rule">1. First Big Achievement:</label>
+        <textarea class="form-control mx-3" id="rule" name="rule" rows="3" disabled>{{data.achievement}}</textarea>
+      </div>
+    </div>
+
+    
+    <hr class="my-4">
+
+    <div class="form-row">
+      <div class="form-group col-11">
+        <label for="risk">2. First Risk I Ever Took:</label>
+        <textarea class="form-control mx-3" id="risk" name="risk" rows="3" disabled >{{data.risk}}</textarea>
+      </div>
+    </div>
+
+    
+    
+    <hr class="my-4">
+
+    <div class="form-row">
+      <div class="form-group col-11">
+        <label for="happy">3. First Time I Felt Completely Happy:</label>
+        <textarea class="form-control mx-3" id="happy" name="happy" rows="3" disabled>{{data.happy}}</textarea>
+      </div>
+    </div>
+    
+    
+    <hr class="my-4">
+
+    <div class="form-row">
+      <div class="form-group col-11">
+        <label for="rule">4. First Rule I'ld Make as President:</label>
+        <textarea class="form-control mx-3" id="rule" name="rule" rows="3" disabled>{{data.rule}}</textarea>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
+
+<br><br>
+
+<div class="card bg-light">
+  <div class="card-body">
+    <h5 class="card-title">{{data.name|default:"Person"}}'s What?</h5>
+    
+    <div class="form-row">
+      <div class="form-group col-11">
+        <label for="fear">1. What is your biggest fear?</label>
+        <textarea class="form-control mx-3" id="fear" name="fear" rows="3" disabled>{{data.fear}}</textarea>
+      </div>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="form-row">
+      <div class="form-group col-11">
+        <label for="evening">2. What do you do in the evening?</label>
+        <textarea class="form-control mx-3" id="evening" name="evening" rows="3" disabled>{{data.evening}}</textarea>
+      </div>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="form-row">
+      <div class="form-group col-11">
+        <label for="bed">3. What time do you ususally go to bed?</label>
+        <textarea class="form-control mx-3" id="bed" name="bed" rows="3" disabled>{{data.bed}}</textarea>
+      </div>
+    </div>
+
+
+    <hr class="my-4">
+
+    <div class="form-row">
+      <div class="form-group col-11">
+        <label for="job">4. What would be your dream job?</label>
+        <textarea class="form-control mx-3" id="job" name="job" rows="3" disabled>{{data.job}}</textarea>
+      </div>
+    </div>
+    
+    <hr class="my-4">
+
+    <div class="form-row">
+      <div class="form-group col-11">
+        <label for="distract">5. What distracts you?</label>
+        <textarea class="form-control mx-3" id="distract" name="distract" rows="3" disabled>{{data.distract}}</textarea>
+      </div>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="form-row">
+      <div class="form-group col-11">
+        <label for="wish">6. What is your biggest wish?</label>
+        <textarea class="form-control mx-3" id="wish" name="wish" rows="3" disabled>{{data.wish}}</textarea>
+      </div>
+    </div>
+
+    
+
+
+  </div>
+
 </div>
 <br><br>
 {% endblock %}

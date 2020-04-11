@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from .models import Admin_Messages, Secret_Message
-# from slambook.accounts.models import User_Credentials
 from accounts.models import User_Credentials
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -130,6 +129,15 @@ def postsecretmessage(request, name):
         }
         return render(request, 'pages/writesecretmessage.html',ctx)            
 
+@login_required(login_url='/login')
+def friends_page(request, name):
+    authenticated_user = str(request.user)
+    if authenticated_user == name:
+        ctx ={
+            'name' : name,  #profile to be visited
+            # 'data': data
+        }
+        return render(request, 'pages/friends.html',ctx)            
 
 def error_page(request, exception):    
     return render(request, 'pages/error.html')        
