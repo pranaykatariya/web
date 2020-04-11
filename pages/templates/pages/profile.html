@@ -1,32 +1,94 @@
-<p>Profile works!</p>
-
-<p>{{name}}</p>
-
-<p>{{user}}</p>
+{% extends 'accounts/base.html' %}
 
 
-{% if user == name %}
-      <div class="">
-        Update your profile:
+{% block navbar%}
+    {% include "pages/navbar.html" %}
+{% endblock %}
+
+
+{% block content %}
+
+  <br><br>
+  <!-- Jumbotron code -->
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4 text-center">{{data.name|default_if_none:"" }} {{data.lastname|default_if_none:"" }}</h1><br>
+    
+    <p class="lead text-center">{{data.about|default_if_none:"" }}</p>
+
+    <hr class="my-4">
+    
+    <br>
+    
+      
+      {% if username == name %}
+      <div class="row text-center">
+        <div class="col">
+          <a class="btn btn-success" href="/profile/{{request.user}}/userbio" role="button">Update profile</a>
+        </div>
+
+        <div class="col">
+          <a class="btn btn-success" href="/profile/{{request.user}}/friends" role="button">Explore Friends</a>
+        </div>
       </div>
-      <div class="">
-        See all secret messages you received:
+
+      <br>
+
+      <div class="row text-center">
+        <div class="col">
+          <a class="btn btn-success" href="/profile/{{request.user}}/slambook" role="button">Explore Slambook</a>
+        </div>
+        <div class="col">
+          <a class="btn btn-success" href="/profile/{{request.user}}/secretmessages" role="button">Secret Messages</a>
+        </div>
+        
       </div>
-      <div>
-        see all secret messages sent by you:
-        <a class="btn btn-success btn-lg" href="/profile/{{request.user}}" role="button">Secret messages</a>
-      </div>
-      <div>see all slams on your profile</div>
-      <div>Check friends who added their bio to your profile</div>
-      <p class="lead text-center">
-        <a class="btn btn-success btn-lg" href="/profile/{{request.user}}" role="button">Go to profile</a>
-      </p>
+
       {% else %}
 
-      
-      <p class="lead text-center">
-        <a class="btn btn-success btn-lg" href="/profile/{{name}}/writeslam" role="button">Add your bio</a>
-        <a class="btn btn-success btn-lg" href="/profile/{{name}}/writeslam" role="button">Write Slam for {{name}}</a>
-        <a class="btn btn-success btn-lg" href="/profile/{{name}}/writesecretmessage" role="button">Write Secret message to {{name}}</a>
-      </p> 
-{% endif %}
+        <div class="row text-center">
+          <div class="col">
+            <a class="btn btn-success" href="/profile/{{name}}/writeslam" role="button">Add your Bio</a>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="row text-center">
+          <div class="col m-2">
+            <a class="btn btn-success" href="/profile/{{name}}/writesecretmessage" role="button">Secret Message</a>
+          </div>
+          <div class="col m-2">
+            <a class="btn btn-success" href="/profile/{{name}}/writeslam" role="button">Slam for {{name}}</a>
+          </div>
+        </div>
+      </div>              
+
+  </div>  
+        
+  {% endif %}
+
+    <br><br>
+
+
+{% endblock %}
+
+{% block profile %}
+
+<div class="card bg-light">
+  <div class="card-body">
+    <h5 class="card-title">{{data.name|default:"Person"}}'s Information:</h5>
+    <p class="card-text"><b>Name:</b> {{data.name}} {{data.lastname}}</p>
+    <p class="card-text"><b>Birthdate:</b> {{data.birthdate|date:"D,  d M,Y"}}</p>
+    <p class="card-text"><b>Occupation:</b> {{data.occupation}}</p>
+    <p class="card-text"><b>Institute/Company:</b> {{data.company}}</p>
+    <p class="card-text"><b>Contact:</b> {{data.mobile}}</p>
+    <p class="card-text"><b>Email:</b> {{data.email}}</p>
+    <p class="card-text"><b>Contact:</b> {{data.insta_username}}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+<br><br>
+{% endblock %}
+
+

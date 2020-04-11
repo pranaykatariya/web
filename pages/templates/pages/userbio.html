@@ -9,22 +9,31 @@
 {% block content %}
 
 
-<br><br><br>
-
-
 <div class="container">
 
+
+  <br><br><br>
+  
     
 
-    <form>
+    <form action="/profile/{{request.user}}/userbio" method="post">
+      {% csrf_token %}
 
         <h1 class="display-4">Personal</h1>
 
         <div class="form-row">
           <div class="form-group col-6">
             <label for="username">Username:</label>
-            <input type="text" class="form-control" id="username" aria-describedby="username" placeholder="Enter username" value={{request.user}} disabled>
+            <input type="text" class="form-control" name="username" id="username" aria-describedby="username" placeholder="Enter username" value='{{request.user}}' disabled>
             <small id="emailHelp" class="form-text text-muted">You can't change username for slambook.</small>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-12">
+            <label for="about">Tell about yourself:</label>
+            <textarea class="form-control" id="about" name="about" rows="3">{{data.about}} </textarea>
+            <small id="emailHelp" class="form-text text-muted">This will be displayed in your profile's about section</small>
           </div>
         </div>
 
@@ -32,13 +41,13 @@
           <div class="col">
             <div class="form-group">
               <label for="firstname">First Name:</label>
-              <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter First Name">
+              <input type="text" class="form-control" id="firstname" name="firstname" value='{{data.name}}' placeholder="Enter First Name">
             </div>
           </div>
           <div class="col">
             <div class="form-group">
               <label for="lastname">Last Name:</label>
-              <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter Last Name">
+              <input type="text" class="form-control" id="lastname" name="lastname" value='{{data.lastname}}' placeholder="Enter Last Name">
             </div>
           </div>
         </div>
@@ -49,15 +58,21 @@
         <div class="form-row">
           <div class="form-group col">
               <label for="datepicker-13">Birthdate</label>
-              <input class="form-control" type="date" placeholder="Birthdate" name="datepicker-13" id="datepicker-13">              
+              <input class="form-control" type="date" name="birthdate" placeholder="Birthdate" value={{data.birthdate|date:"Y-m-d"}} id="birthdate">              
           </div>
           <div class="col">
             <label for="inputGender">Gender</label>
-            <select id="inputGender" aria-placeholder="Gender" class="form-control">
+            <select id="inputGender" name="gender" aria-placeholder="Gender" class="form-control">
 
               <!-- <option value="" disabled selected>Select Gender</option> -->
               <option value="Male">Male</option>
-              <option value="Female">Female</option>
+              
+
+              {% if data.gender == 'Female' %}
+                <option value="Female" selected>Female</option>
+              {% else %}
+                <option value="Female">Female</option>
+              {% endif %}
             </select>
           </div>
         </div>
@@ -66,24 +81,145 @@
         <div class="form-row">
           <div class="form-group col">
               <label for="occupation">Occupation:</label>
-              <input class="form-control" type="text" placeholder="Occupation" name="occupation" id="occupation">              
+              <input class="form-control" type="text" value='{{data.occupation}}' placeholder="Occupation" name="occupation" id="occupation">              
           </div>
           <div class="form-group col">
             <label for="company">Institute/Company:</label>
-            <input class="form-control" type="text" placeholder="Institute/Company" name="company" id="company">              
+            <input class="form-control" type="text" value='{{data.company}}' placeholder="Institute/Company" name="company" id="company">              
           </div>
         </div>
-
 
         <!-- mobile user input field -->
         <div class="form-row">
           <div class="form-group col-6">
             <label for="mobile">Mobile No:</label>
-            <input type="text" class="form-control" id="mobile" aria-describedby="mobile" placeholder="Enter mobile no">
+            <input type="number" maxlength="10" pattern="[6-9]{1}[0-9]{9}" name="mobile" class="form-control" id="mobile" value='{{data.mobile}}' aria-describedby="mobile" placeholder="Enter mobile no">
           </div>
         </div>
 
 
+        <br><br>
+
+
+        <h1 class="display-4">Online me:</h1>
+
+        <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Email:</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" name="email" value='{{data.email}}' id="inputEmail3" placeholder="Email">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">Instagram username:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" value='{{data.insta_username}}' id="inputPassword3" name="insta_username" placeholder="Instagram username">
+          </div>
+        </div>
+
+
+        <br><br>
+
+        <h1 class="display-4">First's:</h1>
+
+        <div class="form-row">
+          <div class="form-group col-12">
+            <label for="achievement">1. First Big Achievement:</label>
+            <textarea class="form-control" id="achievement" name="achievement" rows="3" >{{data.achievement}}</textarea>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="form-row">
+          <div class="form-group col-12">
+            <label for="risk">2. First Risk I Ever Took:</label>
+            <textarea class="form-control" id="risk" name="risk" rows="3" >{{data.risk}}</textarea>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="form-row">
+          <div class="form-group col-12">
+            <label for="happy">3. First Time I Felt Completely Happy:</label>
+            <textarea class="form-control" id="happy" name="happy" rows="3" >{{data.happy}}</textarea>
+          </div>
+        </div>
+        
+        <br>
+
+        <div class="form-row">
+          <div class="form-group col-12">
+            <label for="rule">4. First Rule I'ld Make as President:</label>
+            <textarea class="form-control" id="rule" name="rule" rows="3" >{{data.rule}}</textarea>
+          </div>
+        </div>
+
+
+        <br><br>
+
+        <h1 class="display-4">What Question's:</h1>
+
+        <div class="form-row">
+          <div class="form-group col-12">
+            <label for="fear">1. What is your biggest fear?</label>
+            <textarea class="form-control" id="fear" name="fear" rows="3" >{{data.fear}}</textarea>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="form-row">
+          <div class="form-group col-12">
+            <label for="evening">2. What do you do in the evening?</label>
+            <textarea class="form-control" id="evening" name="evening" rows="3" >{{data.evening}}</textarea>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="form-row">
+          <div class="form-group col-12">
+            <label for="bed">3. What time do you ususally go to bed?</label>
+            <textarea class="form-control" id="bed" name="bed" rows="3" >{{data.bed}}</textarea>
+          </div>
+        </div>
+
+
+        <br>
+
+        <div class="form-row">
+          <div class="form-group col-12">
+            <label for="job">4. What would be your dream job?</label>
+            <textarea class="form-control" id="job" name="job" rows="3" >{{data.job}}</textarea>
+          </div>
+        </div>
+        
+        <br>
+
+        <div class="form-row">
+          <div class="form-group col-12">
+            <label for="distract">5. What distracts you?</label>
+            <textarea class="form-control" id="distract" name="distract" rows="3" >{{data.distract}}</textarea>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="form-row">
+          <div class="form-group col-12">
+            <label for="wish">6. What is your biggest wish?</label>
+            <textarea class="form-control" id="wish" name="wish" rows="3" >{{data.wish}}</textarea>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="text-center">
+          <input type="submit" value="Update" class="btn btn-success btn-block rounded-0 py-2">
+        </div>
+        <br>
+        <br>
       </form>
 </div>
 

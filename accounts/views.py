@@ -12,7 +12,7 @@ def logout(request):
 
 def login_page(request):
     if request.user.is_authenticated:
-        return redirect('/')
+        return redirect('/profile/'+str(request.user))
     else:        
         if request.method == 'POST':        
             user = request.POST['username']
@@ -22,7 +22,7 @@ def login_page(request):
 
             if user is not None:
                 auth.login(request,user)
-                return redirect('/')
+                return redirect('/profile/'+str(request.user))
             else:
                 messages.info(request,'Invalid credentials')
                 return redirect('/login')     
