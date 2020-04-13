@@ -130,14 +130,17 @@ def postsecretmessage(request, name):
         return render(request, 'pages/writesecretmessage.html',ctx)            
 
 @login_required(login_url='/login')
-def friends_page(request, name):
+def slambook_page(request, name):
     authenticated_user = str(request.user)
     if authenticated_user == name:
         ctx ={
             'name' : name,  #profile to be visited
             # 'data': data
         }
-        return render(request, 'pages/friends.html',ctx)            
+        return render(request, 'pages/slambook.html',ctx)            
+    else:
+        return redirect('/profile/'+authenticated_user+'/slambook')    
+
 
 def error_page(request, exception):    
     return render(request, 'pages/error.html')        

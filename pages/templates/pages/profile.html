@@ -27,9 +27,6 @@
           <a class="btn btn-success m-3" href="/profile/{{request.user}}/userbio" role="button">Update profile</a>
         </div>
 
-        <div class="col">
-          <a class="btn btn-success m-3" href="/profile/{{request.user}}/friends" role="button">Explore Friends</a>
-        </div>
       </div>
 
       <br>
@@ -46,21 +43,16 @@
 
       {% else %}
 
-        <div class="row text-center">
-          <div class="col">
-            <a class="btn btn-success m-2" href="/profile/{{name}}/writeslam" role="button">Add your Bio</a>
-          </div>
-        </div>
-
-        <br>
+        
 
         <div class="row text-center">
-          <div class="col m-2">
-            <a class="btn btn-success m-2" href="/profile/{{name}}/writesecretmessage" role="button">Secret Message</a>
-          </div>
           <div class="col m-2">
             <a class="btn btn-success m-2" href="/profile/{{name}}/writeslam" role="button">Slam for {{name}}</a>
           </div>
+          <div class="col m-2">
+            <a class="btn btn-success m-2" href="/profile/{{name}}/writesecretmessage" role="button">Secret Message</a>
+          </div>
+          
         </div>
       </div>              
 

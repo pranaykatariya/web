@@ -32,7 +32,7 @@ DEBUG = (os.environ.get('DEBUG_VALUE') == 'False')
 
 #in production environment
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 
