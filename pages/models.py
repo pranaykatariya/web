@@ -14,3 +14,21 @@ class Secret_Message(models.Model):
     from_username = models.CharField(max_length=64)
     message = models.TextField()
     timestamp_message = models.DateTimeField(auto_now_add=True)
+
+
+class Slambook(models.Model):
+    to_username = models.CharField(max_length=64)    
+    from_username = models.CharField(max_length=64)
+    no_saved = models.CharField(max_length=64)
+    nickname = models.CharField(max_length=64)
+    color_suits = models.CharField(max_length=128)
+    like = models.TextField()
+    dislike = models.TextField()
+    similar_things = models.TextField()
+    sweet_memory = models.TextField()
+    relation = models.CharField(max_length=64)
+    song = models.TextField()
+    advice = models.TextField()
+    privacy = models.BooleanField(default=True)
+    share  = models.CharField(max_length=64)
+    timestamp_slam = models.DateTimeField(auto_now_add=True)

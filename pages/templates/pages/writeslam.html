@@ -1,1 +1,132 @@
-<p>writeslam works!</p>
+{% extends 'accounts/base.html' %}
+
+
+{% block navbar%}
+    {% include "pages/navbar.html" %}
+{% endblock %}
+
+
+
+{% block content %}
+<br><br><br>
+<h1>Add your slam to {{name}}'s slambook</h1>
+<br>
+<form action="/profile/{{name}}/writeslam" method="post">
+    {% csrf_token %}
+    <div>
+        
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                  <label for="no_saved">1. {{name}}'s no saved in your phone as:</label>
+                  <input type="text" class="form-control" id="no_saved" name="no_saved" value='{{data.no_save}}' required>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                  <label for="nickname">2. Any nickname for {{name}}:</label>
+                  <input type="text" class="form-control" id="nickname" name="nickname" value='{{data.nickname}}' required>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                  <label for="color_suits">3. Colour which suits on {{name}}:</label>
+                  <input type="text" class="form-control" id="color_suits" name="color_suits" value='{{data.color_suits}}' required>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                  <label for="relation">4. Your relationship with {{name}}:</label>
+                  <input type="text" class="form-control" id="relation" name="relation" value='{{data.relation}}' required>
+                </div>
+            </div>
+        </div>
+
+        <br>        
+
+        <div class="form-row">
+            <div class="form-group col-12">
+              <label for="like">5. Likes in {{name}}:</label>
+              <textarea class="form-control" id="like" name="like" rows="3" required>{{data.like}}</textarea>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="form-row">
+            <div class="form-group col-12">
+              <label for="dislike">6. Dislikes in {{name}}:</label>
+              <textarea class="form-control" id="dislike" name="dislike" rows="3" required>{{data.dislike}}</textarea>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="form-row">
+            <div class="form-group col-12">
+              <label for="similar_things">7. Things that are similar between you and {{name}}:</label>
+              <textarea class="form-control" id="similar_things" name="similar_things" rows="3" required>{{data.similar_things}}</textarea>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="form-row">
+            <div class="form-group col-12">
+              <label for="sweet_memory">8. Any sweet memory with {{name}}:</label>
+              <textarea class="form-control" id="sweet_memory" name="sweet_memory" rows="3" required>{{data.sweet_memory}}</textarea>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="form-row">
+            <div class="form-group col-12">
+              <label for="song">9. Any song dedicated for {{name}}:</label>
+              <textarea class="form-control" id="song" name="song" rows="3" required>{{data.song}}</textarea>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="form-row">
+            <div class="form-group col-12">
+              <label for="advice">10. Advice for {{name}}:</label>
+              <textarea class="form-control" id="advice" name="advice" rows="3" required>{{data.advice}}</textarea>
+            </div>
+        </div>
+
+        <br>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                  <label for="share">11. Can I post this slam as a story:</label>
+                  <input type="text" class="form-control" id="share" name="share" value='{{data.share}}' required>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <input class="btn btn-success col-lg-2 col-12" type="submit" value="Add to slambook" name="_save">
+
+    </div>
+</form>
+
+
+<br><br>
+{% endblock %}

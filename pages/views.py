@@ -41,8 +41,34 @@ def profile_page(request, name):
         return redirect('/login')    
         
 
+@login_required(login_url='/login')
 def postslam(request, name):    
-    return render(request, 'pages/writeslam.html')        
+    authenticated_user = str(request.user)
+
+    if request.method == 'POST':
+        mess = request.POST['message']
+        no_saved = models.CharField(max_length=64)
+        nickname = models.CharField(max_length=64)
+        color_suits = models.CharField(max_length=128)
+        like = models.TextField()
+        dislike = models.TextField()
+        similar_things = models.TextField()
+        sweet_memory = models.TextField()
+        relation = models.CharField(max_length=64)
+        song = models.TextField()
+        advice = models.TextField()
+        privacy = models.BooleanField(default=True)
+        share  = models.CharField(max_length=64)
+        secret_msg = Secret_Message(to_username=name, from_username=authenticated_user,message= mess)
+        secret_msg.save()        
+        return redirect('/profile/'+name+'/writeslam')
+    else:
+        list  = Secret_Message.objects.filter(to_username=name, from_username=authenticated_user)
+        ctx ={
+            'name' : name,  #profile to be visited
+            'datasource': list
+        }
+        return render(request, 'pages/writeslam.html',ctx)        
 
 
 @login_required(login_url='/login')
