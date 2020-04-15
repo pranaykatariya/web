@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Admin_Messages, Secret_Message
+from .models import Admin_Messages, Secret_Message, Slambook
 from accounts.models import User_Credentials
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -39,34 +39,52 @@ def profile_page(request, name):
         
     else:
         return redirect('/login')    
-        
+
 
 @login_required(login_url='/login')
 def postslam(request, name):    
     authenticated_user = str(request.user)
 
     if request.method == 'POST':
-        mess = request.POST['message']
-        no_saved = models.CharField(max_length=64)
-        nickname = models.CharField(max_length=64)
-        color_suits = models.CharField(max_length=128)
-        like = models.TextField()
-        dislike = models.TextField()
-        similar_things = models.TextField()
-        sweet_memory = models.TextField()
-        relation = models.CharField(max_length=64)
-        song = models.TextField()
-        advice = models.TextField()
-        privacy = models.BooleanField(default=True)
-        share  = models.CharField(max_length=64)
-        secret_msg = Secret_Message(to_username=name, from_username=authenticated_user,message= mess)
-        secret_msg.save()        
+        no_saved = request.POST['no_saved']
+        nickname = request.POST['nickname']
+        color_suits = request.POST['color_suits']
+        like = request.POST['like']
+        dislike = request.POST['dislike']
+        similar_things = request.POST['similar_things']
+        sweet_memory = request.POST['sweet_memory']
+        relation = request.POST['relation']
+        song = request.POST['song']
+        advice = request.POST['advice']
+        share  = request.POST['share']
+        secret  = request.POST['secret']
+        crush  = request.POST['crush']
+
+        slambook = Slambook(
+        to_username=name, 
+        from_username=authenticated_user,
+        no_saved = no_saved,
+        nickname = nickname,
+        color_suits = color_suits,
+        like = like,
+        dislike = dislike,
+        similar_things = similar_things,
+        sweet_memory = sweet_memory,
+        relation = relation,
+        song = song,
+        advice = advice,
+        share  = share,
+        secret = secret,
+        crush = crush
+        )
+        
+        slambook.save()        
         return redirect('/profile/'+name+'/writeslam')
     else:
-        list  = Secret_Message.objects.filter(to_username=name, from_username=authenticated_user)
+        userdata = User_Credentials.objects.get(username= name)
         ctx ={
             'name' : name,  #profile to be visited
-            'datasource': list
+            'userdata': userdata
         }
         return render(request, 'pages/writeslam.html',ctx)        
 
@@ -158,14 +176,42 @@ def postsecretmessage(request, name):
 @login_required(login_url='/login')
 def slambook_page(request, name):
     authenticated_user = str(request.user)
+
     if authenticated_user == name:
+        slams = Slambook.objects.filter(to_username= authenticated_user)
+        
+        # userdata = User_Credentials.objects.filter(username= slams.from_username)
+
         ctx ={
             'name' : name,  #profile to be visited
-            # 'data': data
+            'slams': slams
+            # 'userdata': userdata
         }
         return render(request, 'pages/slambook.html',ctx)            
     else:
         return redirect('/profile/'+authenticated_user+'/slambook')    
+
+
+@login_required(login_url='/login')
+def slamprivacy(request, name):
+    authenticated_user = str(request.user)
+    url=""
+    if authenticated_user == name:
+        if request.method == 'POST':
+            url = request.POST['url']
+            id = request.POST['id']
+            privacy = request.POST['privacy']
+            
+            if eval(privacy):
+                Slambook.objects.filter(id=id).update(privacy=False)
+                print("Public")
+            else:
+                Slambook.objects.filter(id=id).update(privacy=True)
+                print("private")    
+            
+            return redirect(url+'#'+id)
+    else:
+        return redirect(url)
 
 
 def error_page(request, exception):    

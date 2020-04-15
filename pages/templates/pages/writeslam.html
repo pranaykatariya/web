@@ -2,15 +2,17 @@
 
 
 {% block navbar%}
-    {% include "pages/navbar.html" %}
+{% include "pages/navbar.html" %}
 {% endblock %}
 
 
 
 {% block content %}
 <br><br><br>
-<h1>Add your slam to {{name}}'s slambook</h1>
+<h1>Add your slam to {{userdata.name}}'s slambook</h1>
+
 <br>
+
 <form action="/profile/{{name}}/writeslam" method="post">
     {% csrf_token %}
     <div>
@@ -111,11 +113,30 @@
             </div>
         </div>
 
+        
+        <br>
+
+        <div class="form-row">
+            <div class="form-group col-12">
+              <label for="secret">11. Top secret with {{name}}:</label>
+              <textarea class="form-control" id="secret" name="secret" rows="3" required>{{data.secret}}</textarea>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="form-row">
+            <div class="form-group col-12">
+              <label for="crush">12. {{name}}'s Crush or Crushes?</label>
+              <textarea class="form-control" id="crush" name="crush" rows="3" required>{{data.crush}}</textarea>
+            </div>
+        </div>
+
         <br>
         <div class="form-row">
             <div class="col">
                 <div class="form-group">
-                  <label for="share">11. Can I post this slam as a story:</label>
+                  <label for="share">13. Can I post this slam as a story:</label>
                   <input type="text" class="form-control" id="share" name="share" value='{{data.share}}' required>
                 </div>
             </div>

@@ -29,6 +29,8 @@ class Slambook(models.Model):
     relation = models.CharField(max_length=64)
     song = models.TextField()
     advice = models.TextField()
+    secret = models.TextField()
+    crush = models.TextField()
     privacy = models.BooleanField(default=True)
     share  = models.CharField(max_length=64)
     timestamp_slam = models.DateTimeField(auto_now_add=True)

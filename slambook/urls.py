@@ -28,7 +28,7 @@ from accounts.views import logout
 from pages.views import about_page
 from pages.views import contact_page
 from pages.views import home_page
-from pages.views import profile_page, postsecretmessage, postslam, secretmessages, userbio, slambook_page
+from pages.views import profile_page, postsecretmessage, postslam, secretmessages, userbio, slambook_page,slamprivacy
 from pages.views import error_page
 
 
@@ -49,7 +49,8 @@ urlpatterns = [
     path('profile/<str:name>/writesecretmessage', postsecretmessage, name='postsecretmessage'),
     path('profile/<str:name>/secretmessages', secretmessages, name='secretmessages'),
     path('profile/<str:name>/userbio', userbio, name='userbio'),
-    path('profile/<str:name>/slambook', slambook_page, name='slambook_page'),
+    path('profile/<str:name>/slambook/', slambook_page, name='slambook_page'),
+    path('profile/<str:name>/slamprivacy', slamprivacy, name='slamprivacy'),
 
 
     path('admin/', admin.site.urls),
