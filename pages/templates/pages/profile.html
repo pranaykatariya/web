@@ -9,6 +9,15 @@
 {% block content %}
 
   <br><br>
+
+  {% if name == username%}
+    {% if profile_complete <= 80%}
+    <div class="alert alert-danger text-center">
+      <p>Only {{profile_complete}}% profile is completed</p><br>
+      <p>Click on update profile to complete your profile</p>
+    </div>
+    {% endif %}
+  {% endif %}  
   <!-- Jumbotron code -->
 <div class="container">
   <div class="jumbotron">
@@ -195,6 +204,130 @@
 
 </div>
 <br><br>
+
+<div class="container">
+
+  
+
+      {% if slams %}
+
+      <h1 class="display-4 text-center">{{data.name|default_if_none:name }}'s Slambook</h1><br>
+
+      <div class="row">  
+          {% for slam in slams %}
+      <a href="#{{slam.id}}">&nbsp;</a>
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          {% if slam.privacy %}
+          <div class="card border-danger">
+          {% else %}
+              <div class="card border-success">
+          {% endif %}
+              <div class="card-body">
+                  <h5 class="card-title text-center"><a class="text-decoration-none text-capitalize" href="/profile/{{slam.from_username}}" >{{ slam.from_username}}</a></h5>
+                  
+                  <div class="card my-2">
+                      <div class="card-body bg-light">
+                          <div class="card-title font-weight-bold m-1 text-capitalize">1. {{slam.to_username}}'s no saved in your phone as</div>
+                          <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.no_saved}}</div>
+                      </div>
+                  </div>
+
+                  <div class="card my-2">
+                      <div class="card-body bg-light">
+                          <div class="card-title font-weight-bold m-1 text-capitalize">2. Any nickname for {{slam.to_username}}:</div>
+                          <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.nickname}}</div>
+                      </div>
+                  </div>
+
+                  <div class="card my-2">
+                      <div class="card-body bg-light">
+                          <div class="card-title font-weight-bold m-1 text-capitalize">3. Colour which suits on {{slam.to_username}}:</div>
+                          <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.color_suits}}</div>
+                      </div>
+                  </div>
+
+                  <div class="card my-2">
+                      <div class="card-body bg-light">
+                          <div class="card-title font-weight-bold m-1 text-capitalize">4. Your relation with {{slam.to_username}}:</div>
+                          <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.relation}}</div>
+                      </div>
+                  </div>
+
+                  <div class="card my-2">
+                      <div class="card-body bg-light">
+                          <div class="card-title font-weight-bold m-1 text-capitalize">5. Likes in {{slam.to_username}}:</div>
+                          <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.like}}</div>
+                      </div>
+                  </div>
+
+                  <div class="card my-2">
+                      <div class="card-body bg-light">
+                          <div class="card-title font-weight-bold m-1 text-capitalize">6. Dislikes in {{slam.to_username}}:</div>
+                          <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.dislike}}</div>
+                      </div>
+                  </div>
+              
+                  <div class="card my-2">
+                      <div class="card-body bg-light">
+                          <div class="card-title font-weight-bold m-1 text-capitalize">7. Things that are similar between you and {{slam.to_username}}:</div>
+                          <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.similar_things}}</div>
+                      </div>
+                  </div>
+
+                  <div class="card my-2">
+                      <div class="card-body bg-light">
+                          <div class="card-title font-weight-bold m-1 text-capitalize">8. Any sweet memory with {{slam.to_username}}:</div>
+                          <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.sweet_memory}}</div>
+                      </div>
+                  </div>
+                
+                  <div class="card my-2">
+                      <div class="card-body bg-light">
+                          <div class="card-title font-weight-bold m-1 text-capitalize">9. Any song dedicated for {{slam.to_username}}:</div>
+                          <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.song}}</div>
+                      </div>
+                  </div>
+                
+                  <div class="card my-2">
+                      <div class="card-body bg-light">
+                          <div class="card-title font-weight-bold m-1 text-capitalize">10. Advice for {{slam.to_username}}:</div>
+                          <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.advice}}</div>
+                      </div>
+                  </div>
+
+                  <div class="card my-2">
+                      <div class="card-body bg-light">
+                          <div class="card-title font-weight-bold m-1 text-capitalize">11. Can I post this slam as a story:</div>
+                          <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.share}}</div>
+                      </div>
+                  </div>
+                <br>
+                <div class="row">
+                     
+                  <div class="col mx-2 text-center">
+                      <a href="/profile/{{slam.from_username}}" class="btn btn-outline-success">{{slam.from_username}}'s profile</a>
+                  </div>
+                
+                
+                
+                </div>
+
+              </div>
+          </div>
+      </div>
+
+      {% endfor %}
+
+      {% else %}
+          <div class="alert alert-danger text-capitalize">Public slams not available</div>
+  {% endif %}
+
+  </div>
+
+</div>
+
+
+
 {% endblock %}
 
 

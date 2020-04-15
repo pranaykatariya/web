@@ -6,7 +6,7 @@ class User_Credentials(models.Model):
     
     #personal
     name = models.CharField(max_length=64)
-    lastname = models.CharField(max_length=64,null=True, blank=True)    
+    lastname = models.CharField(max_length=64,null=True, blank=True)
     about = models.TextField(null=True, blank=True)
     email = models.EmailField(null=False)
     username = models.CharField(max_length=64)

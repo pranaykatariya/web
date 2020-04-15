@@ -12,41 +12,21 @@
 
     <br>
     <br>
-    <p>Exlpore Slambook works!</p>
-    <br>
-    {{ request.headers.user_agent }}
 
 
-    <a href="whatsapp://send?text=http://172.20.10.3:8000/profile/{{request.user}}" data-action="share/whatsapp/share">Share via Whatsapp</a>
 
 
-    
-    <br><br><br><br><b>{{request.path}}</b>
 
-
-<h1>Received slams</h1>
-
-
-<br><br><br>
-            {{ slam.no_saved}}
-            {{ slam.nickname}}
-            {{ slam.color_suits}}
-            {{ slam.like}}
-            {{ slam.dislike}}
-            {{ slam.similar_things}}
-            {{ slam.sweet_memory}}
-            {{ slam.relation}}
-            {{ slam.song}}
-            {{ slam.advice}}
-            {{ slam.share }}
-            {{ slam.secret}}
+<br><br>
+            
 <div class="container">
 
-    <div class="row">
+    
 
         {% if slams %}
-
-            {% for slam in slams %}
+        <h3 class="alert alert-primary">Received slams:</h3>
+        <div class="row">
+        {% for slam in slams %}
         <a href="#{{slam.id}}">&nbsp;</a>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
             {% if slam.privacy %}
@@ -80,7 +60,7 @@
 
                     <div class="card my-2">
                         <div class="card-body bg-light">
-                            <div class="card-title font-weight-bold m-1 text-capitalize">4. Your relationship with {{slam.to_username}}:</div>
+                            <div class="card-title font-weight-bold m-1 text-capitalize">4. Your relation with {{slam.to_username}}:</div>
                             <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.relation}}</div>
                         </div>
                     </div>
@@ -186,7 +166,145 @@
         {% endfor %}
 
         {% else %}
-            <div class="row">Empty Slambook.</div>
+            <div class="alert alert-danger">Empty Slambook.</div>
+    {% endif %}
+
+    </div>
+
+</div>
+
+
+<br>
+<br>
+<br>
+
+
+<br><br>
+
+<div class="container">
+
+    
+
+        {% if sentslams %}
+            <h3 class="alert alert-primary">Sent slams:</h3>
+        <div class="row">
+            {% for slam in sentslams %}
+        <a href="#{{slam.id}}">&nbsp;</a>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            {% if slam.privacy %}
+            <div class="card border-danger">
+            {% else %}
+                <div class="card border-success">
+            {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title text-center"><a class="text-decoration-none text-capitalize" href="/profile/{{slam.to_username}}" >Sent to: {{ slam.to_username}}</a></h5>                    
+                    <div class="card my-2">
+                        <div class="card-body bg-light">
+                            <div class="card-title font-weight-bold m-1 text-capitalize">1. {{slam.to_username}}'s no saved in your phone as</div>
+                            <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.no_saved}}</div>
+                        </div>
+                    </div>
+
+                    <div class="card my-2">
+                        <div class="card-body bg-light">
+                            <div class="card-title font-weight-bold m-1 text-capitalize">2. Any nickname for {{slam.to_username}}:</div>
+                            <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.nickname}}</div>
+                        </div>
+                    </div>
+
+                    <div class="card my-2">
+                        <div class="card-body bg-light">
+                            <div class="card-title font-weight-bold m-1 text-capitalize">3. Colour which suits on {{slam.to_username}}:</div>
+                            <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.color_suits}}</div>
+                        </div>
+                    </div>
+
+                    <div class="card my-2">
+                        <div class="card-body bg-light">
+                            <div class="card-title font-weight-bold m-1 text-capitalize">4. Your relation with {{slam.to_username}}:</div>
+                            <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.relation}}</div>
+                        </div>
+                    </div>
+
+                    <div class="card my-2">
+                        <div class="card-body bg-light">
+                            <div class="card-title font-weight-bold m-1 text-capitalize">5. Likes in {{slam.to_username}}:</div>
+                            <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.like}}</div>
+                        </div>
+                    </div>
+
+                    <div class="card my-2">
+                        <div class="card-body bg-light">
+                            <div class="card-title font-weight-bold m-1 text-capitalize">6. Dislikes in {{slam.to_username}}:</div>
+                            <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.dislike}}</div>
+                        </div>
+                    </div>
+                
+                    <div class="card my-2">
+                        <div class="card-body bg-light">
+                            <div class="card-title font-weight-bold m-1 text-capitalize">7. Things that are similar between you and {{slam.to_username}}:</div>
+                            <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.similar_things}}</div>
+                        </div>
+                    </div>
+
+                    <div class="card my-2">
+                        <div class="card-body bg-light">
+                            <div class="card-title font-weight-bold m-1 text-capitalize">8. Any sweet memory with {{slam.to_username}}:</div>
+                            <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.sweet_memory}}</div>
+                        </div>
+                    </div>
+                  
+                    <div class="card my-2">
+                        <div class="card-body bg-light">
+                            <div class="card-title font-weight-bold m-1 text-capitalize">9. Any song dedicated for {{slam.to_username}}:</div>
+                            <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.song}}</div>
+                        </div>
+                    </div>
+                  
+                    <div class="card my-2">
+                        <div class="card-body bg-light">
+                            <div class="card-title font-weight-bold m-1 text-capitalize">10. Advice for {{slam.to_username}}:</div>
+                            <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.advice}}</div>
+                        </div>
+                    </div>
+
+                    <div class="card my-2">
+                        <div class="card-body bg-light">
+                            <div class="card-title font-weight-bold m-1 text-capitalize">11. Top secret with {{slam.to_username}}:</div>
+                            <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.secret}}</div>
+                        </div>
+                    </div>
+
+                    <div class="card my-2">
+                        <div class="card-body bg-light">
+                            <div class="card-title font-weight-bold m-1 text-capitalize">12.{{slam.to_username}}'s crush or crushes:</div>
+                            <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.crush}}</div>
+                        </div>
+                    </div>
+
+                    <div class="card my-2">
+                        <div class="card-body bg-light">
+                            <div class="card-title font-weight-bold m-1 text-capitalize">13. Can I post this slam as a story:</div>
+                            <div class="card-text mx-1 text-justify"><b>Ans: </b>{{slam.share}}</div>
+                        </div>
+                    </div>
+                  <br>
+                  <div class="row">
+                       
+                    <div class="col mx-2 text-center">
+                        <a href="/profile/{{slam.to_username}}" class="btn btn-outline-success">{{slam.to_username}}'s profile</a>
+                    </div>
+                  
+                  </div>
+
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
+        {% else %}
+            <div class="alert alert-danger text-capitalize">You have not sent any slam to any user.</div>
     {% endif %}
 
     </div>

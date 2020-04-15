@@ -21,7 +21,7 @@
             <div class="col">
                 <div class="form-group">
                   <label for="no_saved">1. {{name}}'s no saved in your phone as:</label>
-                  <input type="text" class="form-control" id="no_saved" name="no_saved" value='{{data.no_save}}' required>
+                  <input type="text" class="form-control" id="no_saved" name="no_saved" value='{{data.no_saved}}' required>
                 </div>
             </div>
         </div>
@@ -120,6 +120,7 @@
             <div class="form-group col-12">
               <label for="secret">11. Top secret with {{name}}:</label>
               <textarea class="form-control" id="secret" name="secret" rows="3" required>{{data.secret}}</textarea>
+              <small id="Help" class="form-text text-muted">Only you and {{name}} can see secret even if this slam is public</small>
             </div>
         </div>
 
@@ -129,6 +130,7 @@
             <div class="form-group col-12">
               <label for="crush">12. {{name}}'s Crush or Crushes?</label>
               <textarea class="form-control" id="crush" name="crush" rows="3" required>{{data.crush}}</textarea>
+              <small id="Help" class="form-text text-muted">Only you and {{name}} can see crush or crushes even if this slam is public</small>
             </div>
         </div>
 

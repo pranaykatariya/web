@@ -30,10 +30,59 @@ def profile_page(request, name):
     if request.user.is_authenticated:
         authenticated_user = str(request.user)
         data = User_Credentials.objects.get(username= name)
+        slamdata = Slambook.objects.filter(to_username=name, privacy=False)
+
+        #code to check if userbio is completed or not
+        count=0
+
+        if not data.name:
+            count+=1
+        if not data.lastname:
+            count+=1
+        if not data.about:
+            count+=1
+        if not data.email:
+            count+=1
+        if not data.birthdate:
+            count+=1
+        if not data.gender:
+            count+=1
+        if not data.occupation:
+            count+=1
+        if not data.company:
+            count+=1
+        if not data.mobile:
+            count+=1
+        if not data.insta_username:
+            count+=1
+        if not data.achievement:
+            count+=1
+        if not data.risk:
+            count+=1
+        if not data.happy:
+            count+=1
+        if not data.fear:
+            count+=1
+        if not data.evening:
+            count+=1
+        if not data.bed:
+            count+=1
+        if not data.job:
+            count+=1
+        if not data.distract:
+            count+=1
+        if not data.wish:
+            count+=1
+        
+        profile_complete = int((19-count)/19*100)
+        
+
         ctx ={
             'name' : name,  #profile to be visited
             'username' : authenticated_user,    #authenticated user
-            'data' : data
+            'data' : data,
+            'slams': slamdata,
+            'profile_complete': profile_complete
         }
         return render(request, 'pages/profile.html', ctx)
         
@@ -43,6 +92,8 @@ def profile_page(request, name):
 
 @login_required(login_url='/login')
 def postslam(request, name):    
+
+    
     authenticated_user = str(request.user)
 
     if request.method == 'POST':
@@ -60,32 +111,64 @@ def postslam(request, name):
         secret  = request.POST['secret']
         crush  = request.POST['crush']
 
-        slambook = Slambook(
-        to_username=name, 
-        from_username=authenticated_user,
-        no_saved = no_saved,
-        nickname = nickname,
-        color_suits = color_suits,
-        like = like,
-        dislike = dislike,
-        similar_things = similar_things,
-        sweet_memory = sweet_memory,
-        relation = relation,
-        song = song,
-        advice = advice,
-        share  = share,
-        secret = secret,
-        crush = crush
-        )
         
-        slambook.save()        
+        slams = Slambook.objects.filter(from_username= authenticated_user, to_username=name)
+        if slams:
+            slams = slams[0]
+            slams.to_username=name 
+            slams.from_username=authenticated_user
+            slams.no_saved = no_saved
+            slams.nickname = nickname
+            slams.color_suits = color_suits
+            slams.like = like
+            slams.dislike = dislike
+            slams.similar_things = similar_things
+            slams.sweet_memory = sweet_memory
+            slams.relation = relation
+            slams.song = song
+            slams.advice = advice
+            slams.share  = share
+            slams.secret = secret
+            slams.crush = crush
+            slams.save()
+        else:
+            print('threre are no slams')
+            slambook = Slambook(
+            to_username=name, 
+            from_username=authenticated_user,
+            no_saved = no_saved,
+            nickname = nickname,
+            color_suits = color_suits,
+            like = like,
+            dislike = dislike,
+            similar_things = similar_things,
+            sweet_memory = sweet_memory,
+            relation = relation,
+            song = song,
+            advice = advice,
+            share  = share,
+            secret = secret,
+            crush = crush)
+            slambook.save()        
+            
+        
+
         return redirect('/profile/'+name+'/writeslam')
     else:
         userdata = User_Credentials.objects.get(username= name)
+        slamdata = Slambook.objects.filter(from_username= authenticated_user, to_username=name)
+        data = None
+        if len(slamdata) == 1:
+            data = slamdata[0]
+        else:
+            pass
+
         ctx ={
             'name' : name,  #profile to be visited
-            'userdata': userdata
+            'data': data,
+            'userdata': userdata,            
         }
+
         return render(request, 'pages/writeslam.html',ctx)        
 
 
@@ -179,12 +262,13 @@ def slambook_page(request, name):
 
     if authenticated_user == name:
         slams = Slambook.objects.filter(to_username= authenticated_user)
-        
+        sent_slams = Slambook.objects.filter(from_username= authenticated_user)
         # userdata = User_Credentials.objects.filter(username= slams.from_username)
 
         ctx ={
             'name' : name,  #profile to be visited
-            'slams': slams
+            'slams': slams,
+            'sentslams': sent_slams
             # 'userdata': userdata
         }
         return render(request, 'pages/slambook.html',ctx)            

@@ -32,7 +32,7 @@
         <div class="form-row">
           <div class="form-group col-12">
             <label for="about">Tell about yourself:</label>
-            <textarea class="form-control" id="about" name="about" rows="3">{{data.about}} </textarea>
+            <textarea class="form-control" id="about" name="about" rows="3">{{data.about|default_if_none:""}} </textarea>
             <small id="emailHelp" class="form-text text-muted">This will be displayed in your profile's about section</small>
           </div>
         </div>
@@ -41,13 +41,13 @@
           <div class="col">
             <div class="form-group">
               <label for="firstname">First Name:</label>
-              <input type="text" class="form-control" id="firstname" name="firstname" value='{{data.name}}' placeholder="Enter First Name">
+              <input type="text" class="form-control" id="firstname" name="firstname" value='{{data.name|default_if_none:""}}' placeholder="Enter First Name">
             </div>
           </div>
           <div class="col">
             <div class="form-group">
               <label for="lastname">Last Name:</label>
-              <input type="text" class="form-control" id="lastname" name="lastname" value='{{data.lastname}}' placeholder="Enter Last Name">
+              <input type="text" class="form-control" id="lastname" name="lastname" value='{{data.lastname|default_if_none:""}}' placeholder="Enter Last Name">
             </div>
           </div>
         </div>
@@ -81,11 +81,11 @@
         <div class="form-row">
           <div class="form-group col">
               <label for="occupation">Occupation:</label>
-              <input class="form-control" type="text" value='{{data.occupation}}' placeholder="Occupation" name="occupation" id="occupation">              
+              <input class="form-control" type="text" value='{{data.occupation|default_if_none:""}}' placeholder="Occupation" name="occupation" id="occupation">              
           </div>
           <div class="form-group col">
             <label for="company">Institute/Company:</label>
-            <input class="form-control" type="text" value='{{data.company}}' placeholder="Institute/Company" name="company" id="company">              
+            <input class="form-control" type="text" value='{{data.company|default_if_none:""}}' placeholder="Institute/Company" name="company" id="company">              
           </div>
         </div>
 
@@ -93,7 +93,7 @@
         <div class="form-row">
           <div class="form-group col-6">
             <label for="mobile">Mobile No:</label>
-            <input type="number" maxlength="10" pattern="[6-9]{1}[0-9]{9}" name="mobile" class="form-control" id="mobile" value='{{data.mobile}}' aria-describedby="mobile" placeholder="Enter mobile no">
+            <input type="number" maxlength="10" pattern="[6-9]{1}[0-9]{9}" name="mobile" class="form-control" id="mobile" value='{{data.mobile|default_if_none:""}}' aria-describedby="mobile" placeholder="Enter mobile no">
           </div>
         </div>
 
@@ -106,13 +106,13 @@
         <div class="form-group row">
           <label for="inputEmail3" class="col-sm-2 col-form-label">Email:</label>
           <div class="col-sm-10">
-            <input type="email" class="form-control" name="email" value='{{data.email}}' id="inputEmail3" placeholder="Email">
+            <input type="email" class="form-control" name="email" value='{{data.email|default_if_none:""}}' id="inputEmail3" placeholder="Email">
           </div>
         </div>
         <div class="form-group row">
           <label for="inputPassword3" class="col-sm-2 col-form-label">Instagram username:</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" value='{{data.insta_username}}' id="inputPassword3" name="insta_username" placeholder="Instagram username">
+            <input type="text" class="form-control" value='{{data.insta_username|default_if_none:""}}' id="inputPassword3" name="insta_username" placeholder="Instagram username">
           </div>
         </div>
 
@@ -124,7 +124,7 @@
         <div class="form-row">
           <div class="form-group col-12">
             <label for="achievement">1. First Big Achievement:</label>
-            <textarea class="form-control" id="achievement" name="achievement" rows="3" >{{data.achievement}}</textarea>
+            <textarea class="form-control" id="achievement" name="achievement" rows="3" >{{data.achievement|default_if_none:""}}</textarea>
           </div>
         </div>
 
@@ -133,7 +133,7 @@
         <div class="form-row">
           <div class="form-group col-12">
             <label for="risk">2. First Risk I Ever Took:</label>
-            <textarea class="form-control" id="risk" name="risk" rows="3" >{{data.risk}}</textarea>
+            <textarea class="form-control" id="risk" name="risk" rows="3" >{{data.risk|default_if_none:""}}</textarea>
           </div>
         </div>
 
@@ -142,7 +142,7 @@
         <div class="form-row">
           <div class="form-group col-12">
             <label for="happy">3. First Time I Felt Completely Happy:</label>
-            <textarea class="form-control" id="happy" name="happy" rows="3" >{{data.happy}}</textarea>
+            <textarea class="form-control" id="happy" name="happy" rows="3" >{{data.happy|default_if_none:""}}</textarea>
           </div>
         </div>
         
@@ -151,7 +151,7 @@
         <div class="form-row">
           <div class="form-group col-12">
             <label for="rule">4. First Rule I'ld Make as President:</label>
-            <textarea class="form-control" id="rule" name="rule" rows="3" >{{data.rule}}</textarea>
+            <textarea class="form-control" id="rule" name="rule" rows="3" >{{data.rule|default_if_none:""}}</textarea>
           </div>
         </div>
 
@@ -163,7 +163,7 @@
         <div class="form-row">
           <div class="form-group col-12">
             <label for="fear">1. What is your biggest fear?</label>
-            <textarea class="form-control" id="fear" name="fear" rows="3" >{{data.fear}}</textarea>
+            <textarea class="form-control" id="fear" name="fear" rows="3" >{{data.fear|default_if_none:""}}</textarea>
           </div>
         </div>
 
@@ -172,7 +172,7 @@
         <div class="form-row">
           <div class="form-group col-12">
             <label for="evening">2. What do you do in the evening?</label>
-            <textarea class="form-control" id="evening" name="evening" rows="3" >{{data.evening}}</textarea>
+            <textarea class="form-control" id="evening" name="evening" rows="3" >{{data.evening|default_if_none:""}}</textarea>
           </div>
         </div>
 
@@ -181,7 +181,7 @@
         <div class="form-row">
           <div class="form-group col-12">
             <label for="bed">3. What time do you ususally go to bed?</label>
-            <textarea class="form-control" id="bed" name="bed" rows="3" >{{data.bed}}</textarea>
+            <textarea class="form-control" id="bed" name="bed" rows="3" >{{data.bed|default_if_none:""}}</textarea>
           </div>
         </div>
 
@@ -191,7 +191,7 @@
         <div class="form-row">
           <div class="form-group col-12">
             <label for="job">4. What would be your dream job?</label>
-            <textarea class="form-control" id="job" name="job" rows="3" >{{data.job}}</textarea>
+            <textarea class="form-control" id="job" name="job" rows="3" >{{data.job|default_if_none:""}}</textarea>
           </div>
         </div>
         
@@ -200,7 +200,7 @@
         <div class="form-row">
           <div class="form-group col-12">
             <label for="distract">5. What distracts you?</label>
-            <textarea class="form-control" id="distract" name="distract" rows="3" >{{data.distract}}</textarea>
+            <textarea class="form-control" id="distract" name="distract" rows="3" >{{data.distract|default_if_none:""}}</textarea>
           </div>
         </div>
 
@@ -209,7 +209,7 @@
         <div class="form-row">
           <div class="form-group col-12">
             <label for="wish">6. What is your biggest wish?</label>
-            <textarea class="form-control" id="wish" name="wish" rows="3" >{{data.wish}}</textarea>
+            <textarea class="form-control" id="wish" name="wish" rows="3" >{{data.wish|default_if_none:""}}</textarea>
           </div>
         </div>
 
