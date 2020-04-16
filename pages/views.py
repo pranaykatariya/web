@@ -6,6 +6,9 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
+def privacy_policy(request):
+    return render(request, 'pages/privacypolicy.html')
+
 def about_page(request):
     return render(request, 'pages/about.html')
 
@@ -299,4 +302,4 @@ def slamprivacy(request, name):
 
 
 def error_page(request, exception):    
-    return render(request, 'pages/error.html')        
+    return render(request, 'pages/error.html')
