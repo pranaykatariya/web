@@ -93,7 +93,7 @@
         <div class="form-row">
           <div class="form-group col-6">
             <label for="mobile">Mobile No:</label>
-            <input type="number" maxlength="10" pattern="[6-9]{1}[0-9]{9}" name="mobile" class="form-control" id="mobile" value='{{data.mobile|default_if_none:""}}' aria-describedby="mobile" placeholder="Enter mobile no">
+            <input type="text" pattern="[789][0-9]{9" title="Not a valid number" maxlength="10" name="mobile" class="form-control" id="mobile" value='{{data.mobile|default_if_none:""}}' aria-describedby="mobile" placeholder="Enter mobile no">
           </div>
         </div>
 
@@ -223,6 +223,9 @@
       </form>
 </div>
 
+<script>
+
+</script>
 
 
 {% endblock %}

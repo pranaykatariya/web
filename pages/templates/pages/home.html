@@ -7,19 +7,17 @@
 
 
 {% block content %}
+<br><br>
 <!-- Jumbotron code -->
 <div class="container">
   <div class="jumbotron">
     <h1 class="display-4 text-center">Slambook</h1><br>
-    
-    <p class="lead text-center">This slambook will take you on a trip down the memory lane. The trip is not new but memories
-      will get refresh.</p>
 
-    <hr class="my-4">
-    <p class="lead text-center">Slambook is not just a book in which information of your friend is
-      written but it's a memory of golden moment's I spent with my dear friends.
+    
+    <p style="font-size: larger" class="lead text-center">Slambook is not just a book in which information of friends is
+      written, but it's a memory of golden moment's we spent with dear friends.
+      
       <br>
-      They are always with me in my good as well as bad times.
     </p>
 
     <br>
@@ -28,7 +26,7 @@
       
       {% if user.is_authenticated %}
       <p class="lead text-center">
-        <a class="btn btn-success btn-lg" href="profile/{{request.user}}" role="button">Go to profile</a>
+        <a style="border-radius: 10px;" class="btn btn-success" href="profile/{{request.user}}" role="button">Go to profile</a>
       </p>
       {% else %}
 
@@ -36,18 +34,73 @@
         Free... Sign up now.
       </p>
       <p class="lead text-center">
-        <a class="btn btn-success btn-lg" href="signup" role="button">Sign Up</a>
-        <a class="btn btn-success btn-lg" href="login" role="button">Login</a>
+        <a style="border-radius: 10px;" class="btn btn-success m-4" href="signup" role="button">Sign Up</a>
+        <a style="border-radius: 10px;" class="btn btn-success m-4" href="login" role="button">Log in</a>
       </p> 
       {% endif %}
 
   </div>
 </div>
-    
+
+<br>
+
+<div style="font-size: larger" class="container text-justify">
+
+  <p>
+      &nbsp&nbsp&nbsp&nbsp The world has gone through different ages, now it's time for the electronic age. There was a time when we wished to have our slam book filled we had to purchase them, then it had its own constraints like it restricted parallel access of the book, we cannot customize the questions according to our wish and it also had the risk of getting lost or destroyed.
+    <br>&nbsp&nbsp&nbsp&nbsp Slambook.tk is the Electronic version of physical slam books whose core concept is taken from hard-coded slam books with additional features. This is the social app that helps us to recollect our memories with our friends and relatives. It also helps you to know about yourself what you are good and bad at, thus helps a person to modify oneself accordingly. It also gives the medium to tell your feelings to your near and dear ones.
+  </p>
+  
+</div>
+
+
+<br>
+
+<div class="container">
+  <div class="card">
+    <div class="card-body bg-light">
+      <div class="display-4 text-center">
+        What we offer?
+      </div>
+    <br>
+  
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-6 my-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title text-center text-capitalize">Slambook for everyone</h5>
+            <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+            <p class="card-text">You can create your slambook on our platform and just with the link your friends can fill up your slambook.</p>
+            <p class="card-text">Received slam will be displayed on your profile along with privacy options.</p>
+          </div>
+        </div>
+      </div>
+      <br>
+      
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-6 my-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title text-center text-capitalize">secret message service</h5>
+            <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+            <p class="card-text">This service allows you to send anonymoys message to your friends.</p>
+            <p class="card-text">You can also recive anonymous message on your profile from your friends or relatives.</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    </div>
+  </div>  
+</div>
+
+<br><br><br>
 
 <!-- carousel code -->
 
-
+<div class="h4 text-center text-capitalize">
+  What user says?
+</div>
+<br>
 
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
@@ -63,7 +116,13 @@
             Comment 1
           </div>
           <div class="card-body px-5">
-            <h5 class="card-title p-4">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, harum? Vitae est consectetur eveniet facere iste quae amet recusandae odio eligendi cum et, soluta ut. Nemo suscipit non repellendus tempore."</h5>
+            <h5 class="card-title p-4">"Slambook.tk is a millenials Slambook."
+              <br>
+              <div class="text-right mr-4">
+                <br> #Slambook <br>
+                #NostalgiaHitHard
+              </div>
+            </h5>
           </div>
         </div>    
       </div>
@@ -75,7 +134,14 @@
             Comment 2
           </div>
           <div class="card-body px-5">
-            <h5 class="card-title p-4">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, harum? Vitae est consectetur eveniet facere iste quae amet recusandae odio eligendi cum et, soluta ut. Nemo suscipit non repellendus tempore."</h5>
+            <h5 class="card-title p-4">"Slambook for others but FIRST INFORMATION REPORT about the crush is reality."
+              <br>
+              <div class="text-right mr-4">
+               <br> #Slambook <br>
+                #ThoseWereTheDays
+              </div>
+            </h5>
+            
           </div>
         </div>    
       </div>
@@ -87,7 +153,13 @@
             Comment 3
           </div>
           <div class="card-body px-5">
-            <h5 class="card-title p-4">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, harum? Vitae est consectetur eveniet facere iste quae amet recusandae odio eligendi cum et, soluta ut. Nemo suscipit non repellendus tempore."</h5>
+            <h5 class="card-title p-4">"I created a profile few day's back, got filled for fun by many. This Slambook will give me goosebumps forever."
+              <br>
+              <div class="text-right mr-4">
+               <br> #Slambook <br>
+                #NostalgiaHitHard
+              </div>
+            </h5>
           </div>
         </div>    
       </div>

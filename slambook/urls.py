@@ -58,3 +58,4 @@ urlpatterns = [
 ]
 
 handler404 = pages_views.error_page
+

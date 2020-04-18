@@ -1,2 +1,30 @@
-<p>Error 404!!!</p>
-<p>Page not found</p>
+{% extends 'accounts/base.html' %}
+
+
+{% block content %}
+
+<br><br><br>
+<div class="container">
+    <div class="bg-success text-white text-center">
+        <br>
+        <h1>Sorry</h1>
+        <h1>404 - The page cannot be found</h1>
+        <br>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="bg-white">
+        <br><br>
+        <p>We cannot find the page you are looking for.</p>
+        <p>It might have been removed, had its name changed, or is temporarily unavailable. </p>
+        <p>Please check that the Web site address is spelled correctly.</p>
+        <p>Or go to our 
+        <a href="/">home page</a>
+        </p>
+        <br><br>
+    </div>
+</div>
+
+{% endblock %}

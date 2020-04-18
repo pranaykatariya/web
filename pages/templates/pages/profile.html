@@ -19,9 +19,40 @@
     {% endif %}
   {% endif %}  
   <!-- Jumbotron code -->
-<div class="container">
+
+
+
   <div class="jumbotron">
     <h1 class="display-4 text-center">{{data.name|default_if_none:"" }} {{data.lastname|default_if_none:"" }}</h1><br>
+  
+    {% if username == name %}
+    <div id="contentCopied" style="width: fit-content; margin: 0 auto;" class="bg-success mb-3"></div>
+      <div  class="container">
+        
+        <div style="width: 50%; margin: 0 auto;" class="text-center input-group input-group-sm">
+          <span>Share Profile: &nbsp;</span>
+          <input type="text" id="myProfile" class="form-control" value="http://127.0.0.1:8000/profile/pranay" aria-label="Recipient's username" aria-describedby="basic-addon2" readonly>
+        <br>  <div class="input-group-appen">
+            <button class="btn btn-outline-success" onclick="myFunction()" type="button">Copy</button>
+            <button class="btn btn-outline-success dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <span class="fa fa-share-alt"></span>
+              Share Profile
+            </button>
+            <div style="width: 30px;" class="dropdown-menu">
+              <a class="dropdown-item fa fa-whatsapp" href="whatsapp://send?text=Bored? Go, Create your slambook. I swear you'll have an amazing time taking a trip down the memory lane. http://127.0.0.1:8000/profile/pranay "> Whatsapp</a>
+              <a class="dropdown-item fa fa-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/profile/pranay"> &nbsp; Facebook</a>
+              <a class="dropdown-item fa fa-twitter" href="https://twitter.com/home?status=http://127.0.0.1:8000/profile/pranay Bored?Go, Create your slambook.I swear you'll have an amazing time taking a trip down the memory lane.">  Tweet</a>
+              <a class="dropdown-item fa fa-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://127.0.0.1:8000/profile/pranay&title=&summary=Bored?Go, Create your slambook.I swear you'll have an amazing time taking a trip down the memory lane.&source="> &nbsp;LinkedIn</a>
+              <a class="dropdown-item fa fa-envelope" href="mailto:info@example.com?&subject=&body=http://127.0.0.1:8000/profile/pranay Bored?Go, Create your slambook.I swear you'll have an amazing time taking a trip down the memory lane."> &nbsp;Email</a>
+              
+              <!-- <div role="separator" class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Separated link</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+    {% endif %}
     
     <p class="lead text-center">{{data.about|default_if_none:"" }}</p>
 
@@ -49,6 +80,8 @@
         </div>
         
       </div>
+
+      
 
       {% else %}
 
@@ -79,60 +112,97 @@
 <div class="card bg-light">
   <div class="card-body">
     <h5 class="card-title">{{data.name|default:"Person"}}'s Information:</h5>
+
     <p class="card-text"><b>Name:</b> {{data.name|default_if_none:""}} {{data.lastname|default_if_none:""}}</p>
-    <p class="card-text"><b>Birthdate:</b> {{data.birthdate|date:"D,  d M,Y"}}</p>
-    <p class="card-text"><b>Occupation:</b> {{data.occupation|default_if_none:""}}</p>
-    <p class="card-text"><b>Institute/Company:</b> {{data.company|default_if_none:""}}</p>
-    <p class="card-text"><b>Contact:</b> {{data.mobile|default_if_none:""}}</p>
-    <p class="card-text"><b>Email:</b> {{data.email|default_if_none:""}}</p>
-    <p class="card-text"><b>Instagram:</b> {{data.insta_username|default_if_none:""}}</p>
     
+    {% if data.birthdate %}
+      <p class="card-text"><b>Birthdate:</b> {{data.birthdate|date:"D,  d M,Y"}}</p>
+    {% endif %}  
+
+    {% if data.occupation %}
+      <p class="card-text"><b>Occupation:</b> {{data.occupation|default_if_none:""}}</p>
+    {% endif %}
+
+    {% if data.company %}
+      <p class="card-text"><b>Institute/Company:</b> {{data.company|default_if_none:""}}</p>
+    {% endif %}  
+
+    {% if data.mobile %}
+      <p class="card-text"><b>Contact:</b> {{data.mobile|default_if_none:""}}</p>
+    {% endif %}
+
+    {% if data.email %}
+      <p class="card-text"><b>Email:</b> {{data.email|default_if_none:""}}</p>
+    {% endif %}
+    
+    {% if data.insta_username %}
+      <p class="card-text"><b>Instagram:</b> {{data.insta_username|default_if_none:""}}</p>
+    {% endif %}
+
   </div>
 </div>
 <br><br>
 
 
+{% if data.achievement and data.risk and data.happy and data.rule %}
 <div class="card bg-light">
   <div class="card-body">
-    <h5 class="card-title">{{data.name|default:"Person"}}'s First:</h5>
+    
+      <h5 class="card-title">{{data.name|default:"Person"}}'s First:</h5>
+    {% endif %}
+
+    <ol type="1">
+    
+    {% if data.achievement %}
     <div class="form-row">
-      <div class="form-group col-11">
-        <label for="rule">1. First Big Achievement:</label>
-        <textarea class="form-control mx-3" id="rule" name="rule" rows="3" disabled>{{data.achievement}}</textarea>
+      <div class="form-group col-12">
+        <label for="rule"><li> First Big Achievement:</li></label>
+        <textarea class="form-control" id="rule" name="rule" rows="3" disabled>{{data.achievement}}</textarea>
       </div>
     </div>
-
-    
     <hr class="my-4">
+    {% endif %}
 
+
+    
+    
+
+    {% if data.risk %}
     <div class="form-row">
-      <div class="form-group col-11">
-        <label for="risk">2. First Risk I Ever Took:</label>
-        <textarea class="form-control mx-3" id="risk" name="risk" rows="3" disabled >{{data.risk}}</textarea>
+      <div class="form-group col-12">
+        <label for="risk"><li> First Risk I Ever Took:</li></label>
+        <textarea class="form-control" id="risk" name="risk" rows="3" disabled >{{data.risk}}</textarea>
       </div>
     </div>
-
-    
-    
     <hr class="my-4">
+    {% endif %}
 
+    
+    
+    
+
+    {% if data.happy %}
     <div class="form-row">
-      <div class="form-group col-11">
-        <label for="happy">3. First Time I Felt Completely Happy:</label>
-        <textarea class="form-control mx-3" id="happy" name="happy" rows="3" disabled>{{data.happy}}</textarea>
+      <div class="form-group col-12">
+        <label for="happy"><li>First Time I Felt Completely Happy:</li></label>
+        <textarea class="form-control" id="happy" name="happy" rows="3" disabled>{{data.happy}}</textarea>
       </div>
     </div>
-    
-    
     <hr class="my-4">
+    {% endif %}
+    
+    
+    
 
+    {% if data.rule %}
     <div class="form-row">
-      <div class="form-group col-11">
-        <label for="rule">4. First Rule I'ld Make as President:</label>
-        <textarea class="form-control mx-3" id="rule" name="rule" rows="3" disabled>{{data.rule}}</textarea>
+      <div class="form-group col-12">
+        <label for="rule"><li> First Rule I'ld Make as President:</li></label>
+        <textarea class="form-control" id="rule" name="rule" rows="3" disabled>{{data.rule}}</textarea>
       </div>
     </div>
-
+    {% endif %}
+  </ol>
 
   </div>
 
@@ -140,72 +210,83 @@
 
 <br><br>
 
-<div class="card bg-light">
+
+<div class="card bg-light container">
   <div class="card-body">
     <h5 class="card-title">{{data.name|default:"Person"}}'s What?</h5>
     
+    <ol type="1">
+    {% if data.fear %}
     <div class="form-row">
-      <div class="form-group col-11">
-        <label for="fear">1. What is your biggest fear?</label>
-        <textarea class="form-control mx-3" id="fear" name="fear" rows="3" disabled>{{data.fear}}</textarea>
+      <div class="form-group col-12">
+        <label for="fear"><li> What is your biggest fear?</li></label>
+        <textarea class="form-control" id="fear" name="fear" rows="3" disabled>{{data.fear}}</textarea>
+      </div>
+    </div>
+    <hr class="my-4">
+    {% endif %}
+
+    {% if data.evening %}
+    <div class="form-row">
+      <div class="form-group col-12">
+        <label for="evening"><li> What do you do in the evening?</li></label>
+        <textarea class="form-control" id="evening" name="evening" rows="3" disabled>{{data.evening}}</textarea>
       </div>
     </div>
 
     <hr class="my-4">
+    {% endif %}
 
+    {% if data.bed %}
     <div class="form-row">
-      <div class="form-group col-11">
-        <label for="evening">2. What do you do in the evening?</label>
-        <textarea class="form-control mx-3" id="evening" name="evening" rows="3" disabled>{{data.evening}}</textarea>
-      </div>
-    </div>
-
-    <hr class="my-4">
-
-    <div class="form-row">
-      <div class="form-group col-11">
-        <label for="bed">3. What time do you ususally go to bed?</label>
-        <textarea class="form-control mx-3" id="bed" name="bed" rows="3" disabled>{{data.bed}}</textarea>
+      <div class="form-group col-12">
+        <label for="bed"><li> What time do you ususally go to bed?</li></label>
+        <textarea class="form-control" id="bed" name="bed" rows="3" disabled>{{data.bed}}</textarea>
       </div>
     </div>
 
 
     <hr class="my-4">
+    {% endif %}
 
+    {% if data.job %}
     <div class="form-row">
-      <div class="form-group col-11">
-        <label for="job">4. What would be your dream job?</label>
-        <textarea class="form-control mx-3" id="job" name="job" rows="3" disabled>{{data.job}}</textarea>
+      <div class="form-group col-12">
+        <label for="job"><li> What would be your dream job? </li> </label>
+        <textarea class="form-control" id="job" name="job" rows="3" disabled>{{data.job}}</textarea>
       </div>
     </div>
     
     <hr class="my-4">
+    {% endif %}
 
+    {% if data.distract %}
     <div class="form-row">
-      <div class="form-group col-11">
-        <label for="distract">5. What distracts you?</label>
-        <textarea class="form-control mx-3" id="distract" name="distract" rows="3" disabled>{{data.distract}}</textarea>
+      <div class="form-group col-12">
+        <label for="distract"> <li> What distracts you? </li></label>
+        <textarea class="form-control" id="distract" name="distract" rows="3" disabled>{{data.distract}}</textarea>
       </div>
     </div>
-
+    
     <hr class="my-4">
+    {% endif %}
 
+    {% if data.wish %}
     <div class="form-row">
-      <div class="form-group col-11">
-        <label for="wish">6. What is your biggest wish?</label>
-        <textarea class="form-control mx-3" id="wish" name="wish" rows="3" disabled>{{data.wish}}</textarea>
+      <div class="form-group col-12">
+        <label for="wish"> <li> What is your biggest wish?</li></label>
+        <textarea class="form-control" id="wish" name="wish" rows="3" disabled>{{data.wish}}</textarea>
       </div>
     </div>
+    {% endif %}
 
     
 
-
+  </ol>
   </div>
 
 </div>
 <br><br>
-
-<div class="container">
 
   
 
@@ -213,7 +294,7 @@
 
       <h1 class="display-4 text-center">{{data.name|default_if_none:name }}'s Slambook</h1><br>
 
-      <div class="row">  
+      <div class="row mx-2">  
           {% for slam in slams %}
       <a href="#{{slam.id}}">&nbsp;</a>
       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
@@ -324,8 +405,23 @@
 
   </div>
 
-</div>
 
+
+<script>
+    function myFunction() 
+    {
+      var copyText = document.getElementById("myProfile");
+      console.log(copyText);
+      copyText.select();
+      copyText.setSelectionRange(0, 99999)
+      document.execCommand("copy");
+      document.getElementById("contentCopied").innerHTML = "Your profile link is copied to the clipboard";
+      setTimeout(function(){ 
+        document.getElementById("contentCopied").innerHTML = "";
+        },
+         3000);
+    }
+</script>
 
 
 {% endblock %}

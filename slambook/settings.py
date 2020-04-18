@@ -31,7 +31,8 @@ SECRET_KEY = '^so(ohwo6mb501d*7u%b8srv3s4@odg6lc=x&^i$xh)89v^j3#'
 DEBUG = (os.environ.get('DEBUG_VALUE') == 'False')
 
 #in production environment
-DEBUG = True
+DEBUG = False
+
 ALLOWED_HOSTS = ['*']
 
 
@@ -146,13 +147,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-    
-#STATIC_ROOT = ''
-# STATIC_ROOT = "slambook/static/"
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, 'static'),
 )    
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 # deployment settings
-django_heroku.settings(locals())
+# django_heroku.settings(locals())

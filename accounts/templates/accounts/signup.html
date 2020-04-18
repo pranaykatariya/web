@@ -7,11 +7,13 @@
 {% endblock %}
 
 {% block content %}
+
+
 <div class="container">
 	<div class="row justify-content-center mt-5 ">
 		<div class="col-12 col-md-8 col-lg-6 pb-5">
                     <!--Form with header-->
-                    <form action="signup" method="post">  
+                    <form action="signup" onsubmit="return checkPassword(this);" method="post">  
                         {% csrf_token %}
                         <div class="card border-success rounded-0">
                             <div class="card-header p-0">
@@ -71,17 +73,20 @@
 
                     
 
+                    
                     <!--Form with header-->
                     {% if messages %}
                     <div class="p-3 mb-2 bg-success text-white">
                         {% for message in messages%}
                         
-                        {{message}}
+                            {{message}}
                         
                         {% endfor %}
                     </div>  
                     {% endif %}
                     
+                    <br>
+                    <div id="signupmessage" class=""></div>  
                     <br>
                     <div class="col-6 offset-3 my-3">
                         <div class="text-center">
@@ -108,4 +113,25 @@
       <p>Let your loved ones write about you</p>
     </div>
   </footer>
+
+
+  <script>
+    function checkPassword(form) { 
+               var password1 = form.password1.value; 
+               var password2 = form.password2.value; 
+               var message = document.getElementById("signupmessage");
+
+                if (password1.length < 6) {
+                    message.innerHTML = "Password legnth should be more than 5"; 
+                    message.className += " p-3 mb-2 bg-success text-white";
+                    return false;
+                } else if (password1 != password2) {
+                   message.innerHTML = "Password and confirm password does not match"; 
+                   message.className += " p-3 mb-2 bg-success text-white";
+                   return false;
+               } else {
+                   return true;
+               }
+    }                
+</script>
 {% endblock %}
