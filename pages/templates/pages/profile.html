@@ -26,30 +26,35 @@
     <h1 class="display-4 text-center">{{data.name|default_if_none:"" }} {{data.lastname|default_if_none:"" }}</h1><br>
   
     {% if username == name %}
-    <div id="contentCopied" style="width: fit-content; margin: 0 auto;" class="bg-success mb-3"></div>
+    
       <div  class="container">
-        
-        <div style="width: 50%; margin: 0 auto;" class="text-center input-group input-group-sm">
-          <span>Share Profile: &nbsp;</span>
-          <input type="text" id="myProfile" class="form-control" value="http://127.0.0.1:8000/profile/pranay" aria-label="Recipient's username" aria-describedby="basic-addon2" readonly>
-        <br>  <div class="input-group-appen">
-            <button class="btn btn-outline-success" onclick="myFunction()" type="button">Copy</button>
-            <button class="btn btn-outline-success dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             <span class="fa fa-share-alt"></span>
-              Share Profile
-            </button>
-            <div style="width: 30px;" class="dropdown-menu">
-              <a class="dropdown-item fa fa-whatsapp" href="whatsapp://send?text=Bored? Go, Create your slambook. I swear you'll have an amazing time taking a trip down the memory lane. http://127.0.0.1:8000/profile/pranay "> Whatsapp</a>
-              <a class="dropdown-item fa fa-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/profile/pranay"> &nbsp; Facebook</a>
-              <a class="dropdown-item fa fa-twitter" href="https://twitter.com/home?status=http://127.0.0.1:8000/profile/pranay Bored?Go, Create your slambook.I swear you'll have an amazing time taking a trip down the memory lane.">  Tweet</a>
-              <a class="dropdown-item fa fa-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://127.0.0.1:8000/profile/pranay&title=&summary=Bored?Go, Create your slambook.I swear you'll have an amazing time taking a trip down the memory lane.&source="> &nbsp;LinkedIn</a>
-              <a class="dropdown-item fa fa-envelope" href="mailto:info@example.com?&subject=&body=http://127.0.0.1:8000/profile/pranay Bored?Go, Create your slambook.I swear you'll have an amazing time taking a trip down the memory lane."> &nbsp;Email</a>
-              
-              <!-- <div role="separator" class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Separated link</a> -->
-            </div>
-          </div>
+        <div class="container text-center">
+          Copy and Share your profile to your friends so that your friends can write slam in your slambook or can send
+          secret message to you.
         </div>
+        <br>
+
+        <div id="contentCopied" style="width: fit-content; margin: 0 auto;" class="bg-success mb-3"></div>
+        <div  class="text-center input-group input-group-sm">
+          
+          <input type="text" id="myProfile" class="form-control" value="{{ request.build_absolute_uri }}" aria-label="Recipient's username" aria-describedby="basic-addon2" readonly>
+          <div class="input-group-append">
+            <button class="btn btn-outline-success" onclick="myFunction()" type="button">Copy</button>
+            
+          </div>
+          
+        </div>
+        
+        <br>
+      <p class="text-center">Share your profile on Social media</p>
+      <div class="container text-center">
+        <a href="whatsapp://send?text=Bored? Go, Create your slambook. I swear you'll have an amazing time taking a trip down the memory lane. {{ request.build_absolute_uri }} " class="fa fa-whatsapp bg-success"></a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" class="fa fa-facebook"></a>
+        <a href="https://twitter.com/home?status={{ request.build_absolute_uri }} Bored?Go, Create your slambook.I swear you'll have an amazing time taking a trip down the memory lane." class="fa fa-twitter"></a>        
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title=&summary=Bored?Go, Create your slambook.I swear you'll have an amazing time taking a trip down the memory lane.&source=" class="fa fa-linkedin"></a>
+      </div>
+
+
       </div>
       <br>
     {% endif %}

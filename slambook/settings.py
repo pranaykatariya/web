@@ -31,7 +31,7 @@ SECRET_KEY = '^so(ohwo6mb501d*7u%b8srv3s4@odg6lc=x&^i$xh)89v^j3#'
 DEBUG = (os.environ.get('DEBUG_VALUE') == 'False')
 
 #in production environment
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -154,6 +155,6 @@ STATICFILES_DIRS = (
 )    
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # deployment settings
 # django_heroku.settings(locals())
