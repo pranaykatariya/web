@@ -49,7 +49,7 @@ def signup_page(request):
             except:
                 messages.info(request,'Username taken!!!')
                 print('username taken')
-                print(sys.exc_info()[0])
+                # print(sys.exc_info()[0])
                 return redirect('/signup')
         else:
             return render(request, 'accounts/signup.html')    

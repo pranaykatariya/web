@@ -30,6 +30,17 @@ def home_page(request):
 
 @login_required(login_url='/login')
 def profile_page(request, name):
+
+    if request.method == 'POST':
+        name = request.POST['profile_name']
+        user = User_Credentials.objects.filter(username=name)
+
+        if user:
+            return redirect('/profile/'+name)   
+        else:
+            messages.info(request,'User not found')
+            return redirect('/profile/'+str(request.user))
+
     if request.user.is_authenticated:
         authenticated_user = str(request.user)
         # data = User_Credentials.objects.get_object_or_404(username= name)
@@ -191,7 +202,10 @@ def userbio(request, name):
         obj.about = request.POST['about']
         obj.name = request.POST['firstname']
         obj.lastname = request.POST['lastname']
-        obj.birthdate = request.POST['birthdate']
+        
+        if request.POST['birthdate']:
+            obj.birthdate = request.POST['birthdate']
+
         obj.gender = request.POST['gender']
         obj.occupation = request.POST['occupation']
         obj.company = request.POST['company']

@@ -55,10 +55,22 @@
 
         <!-- user birthdate field and gender field -->
 
+
         <div class="form-row">
           <div class="form-group col">
               <label for="datepicker-13">Birthdate</label>
-              <input class="form-control" type="date" name="birthdate" placeholder="Birthdate" value={{data.birthdate|date:"Y-m-d"}} id="birthdate">              
+              <input style="width: 100%;
+                            display: block;
+                            width: 100%;
+                            padding: .375rem .75rem;
+                            font-size: 1rem;
+                            line-height: 1.5;
+                            color: #495057;
+                            background-color: #fff;
+                            background-clip: padding-box;
+                            border: 1px solid #ced4da;
+                            border-radius: .25rem;
+              " type="date" name="birthdate" placeholder="Birthdate" value={{data.birthdate|date:"Y-m-d"}} id="my_date_picker">              
           </div>
           <div class="col">
             <label for="inputGender">Gender</label>
@@ -223,11 +235,16 @@
       </form>
 </div>
 
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script>
+  $(document).ready(function() { 
 
+  $(function() { 
+    $( "#my_date_picker" ).datepicker(); 
+  }); 
+  }) 
 </script>
-
-
 {% endblock %}
 
 
