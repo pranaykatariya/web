@@ -9,7 +9,7 @@
     text-align: center;
   }
 
-
+  
   
   .fa {
     padding: 10px;
@@ -17,6 +17,13 @@
     text-align: center;
     text-decoration: none;
     margin: 5px 2px;
+  }
+
+  i.fa{
+    
+    text-align: center;
+    text-decoration: none;
+    
   }
   
   .fa:hover {

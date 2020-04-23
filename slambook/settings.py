@@ -67,7 +67,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            
+            # os.path.join(BASE_DIR, 'slambook/templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -89,19 +89,6 @@ WSGI_APPLICATION = 'slambook.wsgi.application'
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
-#spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-#spring.datasource.url=jdbc:mysql://localhost:3306/psp
-#spring.datasource.username=root
-#spring.datasource.password=password
-#spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL57Dialect
-
-# DATABASES = {
-#     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'slambook',
 #         'USER': 'root',
@@ -110,6 +97,21 @@ WSGI_APPLICATION = 'slambook.wsgi.application'
 #         'PORT': '3306',
 #     }
 # }
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django-slambook',
+        'USER': 'django_slambook',
+        'PASSWORD': 'ZP8mjsnGd8ZP',
+        'HOST': 'django-slambook.cklp1kswxuba.us-east-2.rds.amazonaws.com',
+        'PORT': '5432',
+    }
+}
+
+
+
 
 
 # Password validation
