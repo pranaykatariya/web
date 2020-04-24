@@ -104,7 +104,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'django-slambook-pranay',
         'USER': 'slambook_pranay',
-        'PASSWORD': 'nknknjknnjknkj',        
+        'PASSWORD': 'ZP8mjsnGd8ZP',        
         'HOST': 'django-slambook-pranay.cklp1kswxuba.us-east-2.rds.amazonaws.com',
         'PORT': '5432',
     }
