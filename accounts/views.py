@@ -1,10 +1,21 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
+from django.http import HttpResponse
 from django.contrib import auth, messages
+from django.views.decorators.http import require_GET
 from .models import User_Credentials
 import sys
 
 #Create your views here.
+
+
+@require_GET
+def robots_txt(request):
+    lines = [
+        "User-Agent: *",
+        "Disallow:",
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")
 
 def logout(request):
     auth.logout(request)

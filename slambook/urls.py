@@ -18,9 +18,10 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import handler404, handler500
 from pages import views as pages_views
+from django.views.generic import TemplateView
 
 #from accounts app
-from accounts.views import login_page
+from accounts.views import login_page, robots_txt
 from accounts.views import signup_page
 from accounts.views import logout
 
@@ -52,6 +53,8 @@ urlpatterns = [
     path('profile/<str:name>/slambook/', slambook_page, name='slambook_page'),
     path('profile/<str:name>/slamprivacy', slamprivacy, name='slamprivacy'),
 
+    #SEO point of view robots.txt file
+    path("robots.txt", robots_txt),
 
     path('admin/', admin.site.urls),
 
