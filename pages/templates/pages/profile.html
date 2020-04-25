@@ -1,5 +1,8 @@
 {% extends 'accounts/base.html' %}
 
+{% block title %}
+{{data.name|default_if_none:"" }} {{data.lastname|default_if_none:"" }} : Slambox
+{% endblock %}
 
 {% block navbar%}
     {% include "pages/navbar.html" %}

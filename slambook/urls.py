@@ -56,7 +56,7 @@ urlpatterns = [
     #SEO point of view robots.txt file
     path("robots.txt", robots_txt),
 
-    path('admin/', admin.site.urls),
+    path('admin/pranay', admin.site.urls),
 
 ]
 
