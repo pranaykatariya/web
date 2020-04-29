@@ -13,10 +13,17 @@
 
   <br><br>
 
+  {% if not request.user.is_authenticated %}
+    <div class="alert alert-danger text-center">
+      <p>Login First to write slam or secret message to {{name}}</p>
+      <a href="/login">Click here </a>
+    </div>
+  {% endif %}
+
   {% if name == username%}
     {% if profile_complete <= 80%}
     <div class="alert alert-danger text-center">
-      <p>Only {{profile_complete}}% profile is completed</p><br>
+      <p>Only {{profile_complete}}% profile is completed</p>
       <p>Click on update profile to complete your profile</p>
     </div>
     {% endif %}

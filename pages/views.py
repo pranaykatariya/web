@@ -28,7 +28,7 @@ def contact_page(request):
 def home_page(request):    
     return render(request, 'pages/home.html')
 
-@login_required(login_url='/login')
+# @login_required(login_url='/login')
 def profile_page(request, name):
 
     if request.method == 'POST':
@@ -41,68 +41,66 @@ def profile_page(request, name):
             messages.info(request,'User not found')
             return redirect('/profile/'+str(request.user))
 
-    if request.user.is_authenticated:
-        authenticated_user = str(request.user)
-        # data = User_Credentials.objects.get_object_or_404(username= name)
-        data = get_object_or_404(User_Credentials, username= name)
-        slamdata = Slambook.objects.filter(to_username=name, privacy=False)
 
-        #code to check if userbio is completed or not
-        count=0
+    authenticated_user = str(request.user)
+    # data = User_Credentials.objects.get_object_or_404(username= name)
+    data = get_object_or_404(User_Credentials, username= name)
+    slamdata = Slambook.objects.filter(to_username=name, privacy=False)
 
-        if not data.name:
-            count+=1
-        if not data.lastname:
-            count+=1
-        if not data.about:
-            count+=1
-        if not data.email:
-            count+=1
-        if not data.birthdate:
-            count+=1
-        if not data.gender:
-            count+=1
-        if not data.occupation:
-            count+=1
-        if not data.company:
-            count+=1
-        if not data.mobile:
-            count+=1
-        if not data.insta_username:
-            count+=1
-        if not data.achievement:
-            count+=1
-        if not data.risk:
-            count+=1
-        if not data.happy:
-            count+=1
-        if not data.fear:
-            count+=1
-        if not data.evening:
-            count+=1
-        if not data.bed:
-            count+=1
-        if not data.job:
-            count+=1
-        if not data.distract:
-            count+=1
-        if not data.wish:
-            count+=1
-        
-        profile_complete = int((19-count)/19*100)
-        
+    #code to check if userbio is completed or not
+    count=0
 
-        ctx ={
-            'name' : name,  #profile to be visited
-            'username' : authenticated_user,    #authenticated user
-            'data' : data,
-            'slams': slamdata,
-            'profile_complete': profile_complete
-        }
-        return render(request, 'pages/profile.html', ctx)
-        
-    else:
-        return redirect('/login')    
+    if not data.name:
+        count+=1
+    if not data.lastname:
+        count+=1
+    if not data.about:
+        count+=1
+    if not data.email:
+        count+=1
+    if not data.birthdate:
+        count+=1
+    if not data.gender:
+        count+=1
+    if not data.occupation:
+        count+=1
+    if not data.company:
+        count+=1
+    if not data.mobile:
+        count+=1
+    if not data.insta_username:
+        count+=1
+    if not data.achievement:
+        count+=1
+    if not data.risk:
+        count+=1
+    if not data.happy:
+        count+=1
+    if not data.fear:
+        count+=1
+    if not data.evening:
+        count+=1
+    if not data.bed:
+        count+=1
+    if not data.job:
+        count+=1
+    if not data.distract:
+        count+=1
+    if not data.wish:
+        count+=1
+    
+    profile_complete = int((19-count)/19*100)
+    
+
+    ctx ={
+        'name' : name,  #profile to be visited
+        'username' : authenticated_user,    #authenticated user
+        'data' : data,
+        'slams': slamdata,
+        'profile_complete': profile_complete
+    }
+    
+    return render(request, 'pages/profile.html', ctx)
 
 
 @login_required(login_url='/login')
