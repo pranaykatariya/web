@@ -1,7 +1,13 @@
 {% extends 'accounts/base.html' %}
 
+
+{% block metatag %}
+  <meta name="description" content="Slambox is the electronic version of physical slambooks. This is the social website helps us to recollect our memories with our friends and relatives.It also gives the medium to tell your feelings to your near and dear ones.">
+  <meta name="keywords" content="{{data.name|default_if_none:"" }} {{data.lastname|default_if_none:"" }}, Slambox, Profile">
+{% endblock %}
+
 {% block title %}
-{{data.name|default_if_none:"" }} {{data.lastname|default_if_none:"" }} : Slambox
+  {{data.name|default_if_none:"" }} {{data.lastname|default_if_none:"" }} : Slambox
 {% endblock %}
 
 {% block navbar%}
@@ -89,7 +95,7 @@
         
         <br>
       <p class="text-center">Share your profile on Social media</p>
-      <div  style="opacity: 0; transition: opacity 3s; " class="container text-center">
+      <div class="container text-center">
         <a href="whatsapp://send?text=Bored? Go, Create your slambook. I swear you'll have an amazing time taking a trip down the memory lane. {{ request.build_absolute_uri }} " class="fa fa-whatsapp bg-success"></a>
         <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" class="fa fa-facebook"></a>
         <a href="https://twitter.com/home?status={{ request.build_absolute_uri }} Bored?Go, Create your slambook.I swear you'll have an amazing time taking a trip down the memory lane." class="fa fa-twitter"></a>        
