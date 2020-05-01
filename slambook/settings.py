@@ -31,7 +31,7 @@ SECRET_KEY = '^so(ohwo6mb501d*7u%b8srv3s4@odg6lc=x&^i$xh)89v^j3#'
 DEBUG = (os.environ.get('DEBUG_VALUE') == 'False')
 
 #in production environment
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
