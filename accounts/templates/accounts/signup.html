@@ -138,18 +138,50 @@
 
 
   <script>
+
+
+    function countUpperCaseChars(str) {
+        
+        console.log((str.match(/[A-Z]/g) || []).length);
+        return (str.match(/[A-Z]/g) || []).length;
+
+    }
+
+
     function checkPassword(form) { 
                var password1 = form.password1.value; 
-               var password2 = form.password2.value; 
+               var password2 = form.password2.value;
+
+               var user = form.username.value;
+
                var message = document.getElementById("signupmessage");
 
-                if (password1.length < 6) {
+
+                
+                
+                if(this.countUpperCaseChars(user) > 0)
+                {   
+                    message.innerHTML = "Username should contain only lower case letters"; 
+                    message.className += " p-3 mb-2 bg-danger text-white";
+                    return false;
+                }else if(user.includes(' '))
+                {
+                    message.innerHTML = "Username is not valid, Remove whitespace."; 
+                    message.className += " p-3 mb-2 bg-danger text-white";
+                    return false;
+                }else if(user.length >12 || user.length < 2)
+                {
+                    message.innerHTML = "Username length should be in 2 to 12 characters"; 
+                    message.className += " p-3 mb-2 bg-danger text-white";
+                    return false;
+                } else if (password1.length < 6) {
+                    
                     message.innerHTML = "Password legnth should be more than 5"; 
-                    message.className += " p-3 mb-2 bg-success text-white";
+                    message.className += " p-3 mb-2 bg-danger text-white";
                     return false;
                 } else if (password1 != password2) {
                    message.innerHTML = "Password and confirm password does not match"; 
-                   message.className += " p-3 mb-2 bg-success text-white";
+                   message.className += " p-3 mb-2 bg-danger text-white";
                    return false;
                } else {
                    return true;
