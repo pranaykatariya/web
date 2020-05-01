@@ -10,7 +10,13 @@ def privacy_policy(request):
     return render(request, 'pages/privacypolicy.html')
 
 def about_page(request):
-    return render(request, 'pages/about.html')
+
+    all_users = User_Credentials.objects.count()
+    all_users = all_users - 17
+    ctx ={
+        'all_users' : all_users,  #profile to be visited        
+    }
+    return render(request, 'pages/about.html', ctx )
 
 def contact_page(request):    
     if request.method == 'POST':
