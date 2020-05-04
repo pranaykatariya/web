@@ -27,7 +27,7 @@ from accounts.views import logout
 
 # from pages app
 from pages.views import about_page,privacy_policy,contact_page,error_page
-from pages.views import home_page
+from pages.views import home_page,sendmail
 from pages.views import profile_page, postsecretmessage, postslam, secretmessages, userbio, slambook_page,slamprivacy
 
 
@@ -52,6 +52,8 @@ urlpatterns = [
     path('profile/<str:name>/userbio', userbio, name='userbio'),
     path('profile/<str:name>/slambook/', slambook_page, name='slambook_page'),
     path('profile/<str:name>/slamprivacy', slamprivacy, name='slamprivacy'),
+
+    path('pranay/sendmail', sendmail, name='sendmail'),
 
     #SEO point of view robots.txt file
     path("robots.txt", robots_txt),

@@ -27,12 +27,11 @@
   {% endif %}
 
   {% if name == username%}
-    {% if profile_complete <= 80%}
-    <div class="alert alert-danger text-center">
-      <p>Only {{profile_complete}}% profile is completed</p>
-      <p>Click on update profile to complete your profile</p>
-    </div>
-    {% endif %}
+
+  <div class="alert alert-danger text-center">
+    <p>Share your profile with your friends to write slam in your slambook.</p>
+    Share on Whatsapp: <a href="whatsapp://send?text=Would you like to add your name in my slambook? {{ request.build_absolute_uri }} ">Click me </a>
+  </div>  
   {% endif %}  
 
 

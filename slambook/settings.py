@@ -31,8 +31,8 @@ SECRET_KEY = '^so(ohwo6mb501d*7u%b8srv3s4@odg6lc=x&^i$xh)89v^j3#'
 DEBUG = (os.environ.get('DEBUG_VALUE') == 'False')
 
 #in production environment
+# DEBUG = False
 DEBUG = False
-# DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -161,3 +161,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # deployment settings
 # django_heroku.settings(locals())
+
+
+# Email settings
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'user.slambox@gmail.com'
+# EMAIL_HOST_PASSWORD = 'Pranay@123'

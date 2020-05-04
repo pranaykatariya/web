@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Admin_Messages, Secret_Message, Slambook
+from .models import Admin_Messages, Secret_Message, Slambook,Promotion_Email_List
 from accounts.models import User_Credentials
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail, EmailMessage
+from django.conf import settings
+from django.template.loader import get_template
 # Create your views here.
 
 
@@ -31,6 +34,73 @@ def contact_page(request):
     else:    
         return render(request, 'pages/contact.html')    
 
+def sendmail(request):    
+    
+    # Add email data
+    # data = []
+
+    # code for uploading email data to database server
+    # for i in data:
+    #     obj = Promotion_Email_List(email= i)
+        
+    #     try:
+    #         obj.save()
+    #         print(i)
+    #     except:
+    #         print("Exception occured: "+i)
+
+    
+    # send email code
+    
+    subject = "Create Your Slambook: Slambox"    
+    message = get_template('pages/promotionformat.html').render()
+    to = ['pranaykatariya1@gmail.com']
+    pass_counter = 0
+    fail_counter = 0
+    for x in Promotion_Email_List.objects.filter(sent=False)[:90]:
+        print(x.email)
+        to[0] = x.email
+        msg = EmailMessage(subject=subject, body=message, from_email= settings.EMAIL_HOST_USER, to= to)
+        msg.content_subtype = 'html'
+        
+        try:
+            msg.send()
+            pass_counter+=1
+            Promotion_Email_List.objects.filter(email=x.email).update(sent=True)
+            print("Mail sent to "+ x.email)
+            print(pass_counter+fail_counter)
+        except :
+            fail_counter+=1
+    
+    
+
+    print("Email sending job end here is your task summarry:")
+    print("Successfully sent: "+str(pass_counter))
+    print("sending failed: "+str(fail_counter)) 
+    
+    
+
+
+    
+
+    
+    
+    # res = send_mail(subject,msg, settings.EMAIL_HOST_USER , ["pranaykatariya4@gmail.com","pranaykatariya1@gmail.com"])
+
+    # if(res == 1):
+    #     result = "sent successfully"
+        
+    # else:
+    #     result = "not sent"
+        
+    ctx ={    
+        # 'authorization' : authorization,
+        # 'result': result
+    }
+
+    return render(request, 'pages/mail.html',ctx)
+
+
 def home_page(request):    
     return render(request, 'pages/home.html')
 
@@ -54,56 +124,56 @@ def profile_page(request, name):
     slamdata = Slambook.objects.filter(to_username=name, privacy=False)
 
     #code to check if userbio is completed or not
-    count=0
+    # count=0
 
-    if not data.name:
-        count+=1
-    if not data.lastname:
-        count+=1
-    if not data.about:
-        count+=1
-    if not data.email:
-        count+=1
-    if not data.birthdate:
-        count+=1
-    if not data.gender:
-        count+=1
-    if not data.occupation:
-        count+=1
-    if not data.company:
-        count+=1
-    if not data.mobile:
-        count+=1
-    if not data.insta_username:
-        count+=1
-    if not data.achievement:
-        count+=1
-    if not data.risk:
-        count+=1
-    if not data.happy:
-        count+=1
-    if not data.fear:
-        count+=1
-    if not data.evening:
-        count+=1
-    if not data.bed:
-        count+=1
-    if not data.job:
-        count+=1
-    if not data.distract:
-        count+=1
-    if not data.wish:
-        count+=1
+    # if not data.name:
+    #     count+=1
+    # if not data.lastname:
+    #     count+=1
+    # if not data.about:
+    #     count+=1
+    # if not data.email:
+    #     count+=1
+    # if not data.birthdate:
+    #     count+=1
+    # if not data.gender:
+    #     count+=1
+    # if not data.occupation:
+    #     count+=1
+    # if not data.company:
+    #     count+=1
+    # if not data.mobile:
+    #     count+=1
+    # if not data.insta_username:
+    #     count+=1
+    # if not data.achievement:
+    #     count+=1
+    # if not data.risk:
+    #     count+=1
+    # if not data.happy:
+    #     count+=1
+    # if not data.fear:
+    #     count+=1
+    # if not data.evening:
+    #     count+=1
+    # if not data.bed:
+    #     count+=1
+    # if not data.job:
+    #     count+=1
+    # if not data.distract:
+    #     count+=1
+    # if not data.wish:
+    #     count+=1
     
-    profile_complete = int((19-count)/19*100)
+    # profile_complete = int((19-count)/19*100)
     
 
     ctx ={
         'name' : name,  #profile to be visited
         'username' : authenticated_user,    #authenticated user
         'data' : data,
-        'slams': slamdata,
-        'profile_complete': profile_complete
+        'slams': slamdata
+        # 'profile_complete': profile_complete
     }
     
     return render(request, 'pages/profile.html', ctx)

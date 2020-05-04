@@ -2,6 +2,11 @@ from django.db import models
 
 # Create your models here.
 
+class Promotion_Email_List(models.Model):
+    email = models.EmailField(null=False, unique=True)
+    sent = models.BooleanField(default=False)
+
+
 class Admin_Messages(models.Model):
     name = models.CharField(max_length=64)
     subject = models.CharField(max_length=64)
