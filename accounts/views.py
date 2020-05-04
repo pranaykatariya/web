@@ -5,8 +5,16 @@ from django.contrib import auth, messages
 from django.views.decorators.http import require_GET
 from .models import User_Credentials
 import sys
+from django.templatetags.static import static
 
 #Create your views here.
+
+
+
+def sitemap_xml(request):
+    # url = static('sitemap.xml')
+    # return HttpResponse(open(url).read(), content_type='text/xml')
+    return render(request, 'accounts/sitemap.xml', content_type='text/xml')
 
 
 @require_GET

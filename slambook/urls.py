@@ -21,7 +21,7 @@ from pages import views as pages_views
 from django.views.generic import TemplateView
 
 #from accounts app
-from accounts.views import login_page, robots_txt
+from accounts.views import login_page, robots_txt, sitemap_xml
 from accounts.views import signup_page
 from accounts.views import logout
 
@@ -57,6 +57,8 @@ urlpatterns = [
 
     #SEO point of view robots.txt file
     path("robots.txt", robots_txt),
+    path("sitemap.xml", sitemap_xml),
+
 
     path('admin/pranay', admin.site.urls),
 
