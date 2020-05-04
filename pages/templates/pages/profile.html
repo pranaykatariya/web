@@ -346,12 +346,13 @@
   
 
 <div class="container">
-  <div class="text-muted">
-    You are able to see this because this slams are made public by {{name}}.
-  </div>
+  
   {% if slams %}
 
       <h1 class="display-4 text-center">{{data.name|default_if_none:name }}'s Slambook</h1><br>
+      <div class="text-muted text-capitalize">
+        You are able to see this because this slams are made public by {{name}}.
+      </div>
       <div class="card-group">
           <div class="row">
           
