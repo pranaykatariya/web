@@ -103,10 +103,10 @@ WSGI_APPLICATION = 'slambook.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'slambook_pranay',
-        'PASSWORD': 'ZP8mjsnGd8ZP',        
-        'HOST': 'django-slambook-pranay.cklp1kswxuba.us-east-2.rds.amazonaws.com',
+        'NAME': 'slambox',
+        'USER': 'postgres',
+        'PASSWORD': 'xxxxxxxxxxxxx',        
+        'HOST': 'slambox.cxtcumdjv2db.ap-south-1.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
