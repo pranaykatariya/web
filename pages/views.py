@@ -15,7 +15,6 @@ def privacy_policy(request):
 def about_page(request):
 
     all_users = User_Credentials.objects.count()
-    all_users = all_users - 17
     ctx ={
         'all_users' : all_users,  #profile to be visited        
     }

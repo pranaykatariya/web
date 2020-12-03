@@ -105,7 +105,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'slambox',
         'USER': 'postgres',
-        'PASSWORD': 'xxxxxxxxxxxxx',        
+        'PASSWORD': 'xxxxxxxxxxxxxxxxx',        
         'HOST': 'slambox.cxtcumdjv2db.ap-south-1.rds.amazonaws.com',
         'PORT': '5432',
     }
